@@ -11,11 +11,16 @@
 
 
 # API Design
-The aim of this document is to detail the design of a Web API allowing access to the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material.
+The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. The design was developed and is documented as follows:
+1. Familiarization with the content and structure of the dataset.
+2. Discussion and elaboration on the requirements of the Web API.
+3. Map requirements to routes, providing motivation and specifying potential alternatives.
+4. Summary of the resulting API design to ease implementation detail.
 
-Before considering the specifications or the design of the API it is necessary to become familiar with the structure of the dataset.
+It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change.
 
 ## Dataset
+The first step in developing an API to access data, is to understand the structure of the data being accessed.
 
 # Endpoints
 All endpoints will support:
