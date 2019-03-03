@@ -11,7 +11,11 @@
 
 
 # API Design
-Description here
+The aim of this document is to detail the design of a Web API allowing access to the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material.
+
+Before considering the specifications or the design of the API it is necessary to become familiar with the structure of the dataset.
+
+## Dataset
 
 # Endpoints
 All endpoints will support:
