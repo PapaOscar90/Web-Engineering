@@ -1,15 +1,3 @@
-# Reworked Routes
-- /airports
-- /carriers
-- /carriers?airport=<airport_code>
-- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month_number>&reason=\<reason\> 
-
-
-
 # API Design
 The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. The design was developed and is documented as follows:
 1. Familiarization with the content and structure of the dataset.
@@ -251,3 +239,15 @@ This designates the month which should be filtered on the month field.
     }
 ]
 ```
+
+# Reworked Routes
+- /airports
+- /carriers
+- /carriers?airport=<airport_code>
+- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month_number>&reason=\<reason\> 
+
+
