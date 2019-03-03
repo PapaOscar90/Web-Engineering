@@ -1,4 +1,62 @@
 # API Design
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [API Design](#api-design)
+    - [Introduction](#introduction)
+    - [Dataset](#dataset)
+    - [Requirements](#requirements)
+    - [Routes](#routes)
+    - [/airports/](#airports)
+        - [-](#-)
+        - [POST](#post)
+        - [/airports?carrier=<carrier_id>](#airportscarriercarrierid)
+            - [-](#--1)
+    - [/carriers/](#carriers)
+        - [-](#--2)
+        - [POST](#post-1)
+        - [/carriers?airport=<airport_id>](#carriersairportairportid)
+            - [-](#--3)
+        - [/carriers/statistics?reason=<reason_name>&month=<month_number>&airport=<airport_id>](#carriersstatisticsreasonreasonnamemonthmonthnumberairportairportid)
+            - [-](#--4)
+                - [reason=<reason_name>](#reasonreasonname)
+                - [month=<month_number>](#monthmonthnumber)
+                - [airport=<airport_id>](#airportairportid)
+        - [/carriers/statistics/delays?from=<airport_id>&to=<airport_id>&carrier=<carrier_id>](#carriersstatisticsdelaysfromairportidtoairportidcarriercarrierid)
+            - [-](#--5)
+                - [from=<airport_id>](#fromairportid)
+                - [to=<airport_id>](#toairportid)
+                - [carrier=<carrier_id>](#carriercarrierid)
+        - [/carriers/<carrier_id>/statistics?from=<airport_id>&to=<airport_id>&month=<month_number>](#carrierscarrieridstatisticsfromairportidtoairportidmonthmonthnumber)
+            - [-](#--6)
+                - [from=<airport_id>](#fromairportid-1)
+                - [to=<airport_id>](#toairportid-1)
+                - [month=<month_number>](#monthmonthnumber-1)
+        - [/carriers/<carrier_id>/on-time?from=<airport_id>&to=<airport_id>&month=<month_number>](#carrierscarrieridon-timefromairportidtoairportidmonthmonthnumber)
+            - [-](#--7)
+                - [from=<airport_id>](#fromairportid-2)
+                - [to=<airport_id>](#toairportid-2)
+                - [month=<month_number>](#monthmonthnumber-2)
+        - [/carriers/<carrier_id>/delayed?from=<airport_id>&to=<airport_id>&month=<month_number>](#carrierscarrieriddelayedfromairportidtoairportidmonthmonthnumber)
+            - [-](#--8)
+                - [from=<airport_id>](#fromairportid-3)
+                - [to=<airport_id>](#toairportid-3)
+                - [month=<month_number>](#monthmonthnumber-3)
+        - [/carriers/<carrier_id>/cancelled?from=<airport_id>&to=<airport_id>&month=<month_number>](#carrierscarrieridcancelledfromairportidtoairportidmonthmonthnumber)
+            - [-](#--9)
+                - [from=<airport_id>](#fromairportid-4)
+                - [to=<airport_id>](#toairportid-4)
+                - [month=<month_number>](#monthmonthnumber-4)
+    - [Summary](#summary)
+- [Appendix](#appendix)
+    - [Truncated JSON Data](#truncated-json-data)
+- [Reworked Routes](#reworked-routes)
+
+<!-- markdown-toc end -->
+
+
+## Introduction
 The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. The design was developed and is documented as follows:
 1. Familiarization with the content and structure of the dataset.
 2. Discussion and elaboration on the requirements of the Web API.
