@@ -34,7 +34,7 @@ The dataset consists of an array of objects, each of which represent one record 
 }
 ```
 
-For this intersection the record also specifies some statistics.
+For this intersection the record also specifies additional statistics.
 ```json
 "statistics": {
     "flights": {
@@ -62,8 +62,13 @@ For this intersection the record also specifies some statistics.
 }
 ```
 
+From considering the structure of the data, several points become apparent
+1. As it stands the data does not enforce a hierarchical relationship between `airport`s, `carrier`s, `time`s, or `statistics`. 
+2. The data does not provide enough information to accurately link flight's from one carrier between two airports.
 
-# Endpoints
+## Requirements
+
+## Routes
 All endpoints will support:
 - application/json
 - text/csv
@@ -153,6 +158,8 @@ This designates the airport which should be filtered on the from field.
 This designates the airport which should be filtered on the to field.
 ###### month=<month_number>
 This designates the month which should be filtered on the month field.
+
+## Summary
 
 
 # Appendix
