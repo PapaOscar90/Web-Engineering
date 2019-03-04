@@ -114,7 +114,7 @@ This route supports retrieving all airports in the dataset.
 ##### GET
 Return all airports within the dataset.
 ###### Sample result (JSON)
-**NOTE** some results have been elided by `...`.
+*NOTE* some results have been elided by `...`.
 ```json
 [
     {
@@ -151,7 +151,7 @@ This route supports retrieving all carriers in the dataset.
 ##### GET
 Return all carriers within the dataset.
 ###### Sample result (JSON)
-**NOTE** some results have been elided by `...`.
+*NOTE* some results have been elided by `...`.
 ```json
 [
     {
@@ -222,7 +222,7 @@ This route supports retrieving and manipulating the statistics in the dataset. W
 ##### GET
 Return all statistics within the dataset.
 ###### Sample result (JSON)
-**NOTE** some results have been elided by `...`.
+*NOTE* some results have been elided by `...`.
 ```json
 [
     {
@@ -330,7 +330,7 @@ The statistics identified by the query parameters is updated with the statics pr
 ##### PATCH
 The statistics identified by the query parameters is updated with the statics provided in the request body. The request body need only include the changed statistics and not any information on the airport, carrier, or time.
 
-**NOTE** best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs.
+*NOTE* best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs. 
 ##### DELETE
 Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
