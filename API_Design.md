@@ -364,11 +364,11 @@ Get the statistics on the number of cancelled flights where the carrier, the air
 Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
 
 
-## `/carriers/statistics/minutes_delayed`
+## `/statistics/minutes_delayed`
 Get the statistics on the minutes delayed.
 ##### GET
 Return the statistics on the number of minutes delayed.
-### `/carriers/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`
+### `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`
 Get the statistics on the minutes delayed filtered by `<carrier_code>`, `<airport_code>`, `<month>`, and `<reason>`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ##### GET
 Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
