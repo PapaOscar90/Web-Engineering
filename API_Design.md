@@ -106,6 +106,8 @@ The specification that was provided details the minimum requires for the API.
 ## Endpoints
 The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
+All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
+
 ---
 ## /airports
 This route supports retrieving all airports in the dataset.
@@ -304,6 +306,36 @@ Return all statistics within the dataset.
     }
 ]
 ```
+##### POST
+Add a new statistic to the dataset. The request requires the data in the request body to specify the carrier, the airport, and the time alongside the statistics.
+
+Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
+
+### /statistics?<carrier_code>&<airport_code>&<month_number>
+Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month_number>`.
+
+Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
+##### GET
+The statistics as filtered by the provided query parameters.
+
+### /statistics?<**carrier_code**>&<**airport_code**>&<**month_number**>&<**year_number**>
+Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month_number>`, `<year_number>`
+Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month_number>`.
+
+Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
+##### GET
+The statistics as filtered by the provided query parameters.
+##### PUT
+The statistics identified by the query parameters is updated with the statics provided in the request body. The request body need only include the statistics and not any information on the airport, carrier, or time.
+##### PATCH
+The statistics identified by the query parameters is updated with the statics provided in the request body. The request body need only include the changed statistics and not any information on the airport, carrier, or time.
+
+**NOTE** best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs.
+##### DELETE
+Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month_number>`, and `<year_number>`.
+
+The server should respond with a 204 status code.
+
 
 ### /carriers/statistics?reason=<reason_name>&month=<month_number>&airport=<airport_id>
 ##### GET
