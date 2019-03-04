@@ -322,7 +322,7 @@ The statistics as filtered by the provided query parameters.
 Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month_number>`, `<year_number>`
 Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month_number>`.
 
-Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
+This represents the endpoint where the filters are required. This is because the statistic must be fully identified in order to modify or delete it.
 ##### GET
 The statistics as filtered by the provided query parameters.
 ##### PUT
