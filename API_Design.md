@@ -364,6 +364,14 @@ This designates the airport which should be filtered on the to field.
 This designates the month which should be filtered on the month field.
 
 ## Summary
+- /airports
+- /carriers
+- /carriers?airport=<airport_code>
+- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
+- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month_number>&reason=\<reason\> 
 
 
 # Appendix
@@ -450,15 +458,5 @@ This designates the month which should be filtered on the month field.
     }
 ]
 ```
-
-# Reworked Routes
-- /airports
-- /carriers
-- /carriers?airport=<airport_code>
-- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month_number>&reason=\<reason\> 
 
 
