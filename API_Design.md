@@ -107,7 +107,7 @@ The specification that was provided details the minimum requires for the API.
 The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
 ---
-## /airports/
+## /airports
 This route supports retrieving all airports in the dataset.
 ##### GET
 Return all airports within the dataset.
@@ -144,7 +144,7 @@ Return all airports within the dataset.
 
 ```
 
-## /carriers/
+## /carriers
 This route supports retrieving all carriers in the dataset.
 ##### GET
 Return all carriers within the dataset.
