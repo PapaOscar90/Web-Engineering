@@ -373,6 +373,22 @@ Get the statistics on the minutes delayed filtered by `<carrier_code>`, `<airpor
 ##### GET
 Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
 
+## <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u></code>
+*NOTE* the name of this endpoint is under evaluation.
+
+Represents the descriptive statistics (mean, median, standard deviation, etc...) of the averages between 2 airports. The query parameters for the two airports are required. What precise statistics have not been specified in the provided specification, so this route will return these averages and the descriptive statistics for all the `statistics` contained in the dataset.
+
+##### GET
+Return the descriptive statistics between the two provided airports.
+
+### <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u>&<carrier></code>
+*NOTE* the name of this endpoint is under evaluation.
+
+Allows for retrieval of the descriptive statistics filtered by a carrier.
+
+##### GET
+Return the descriptive statistics between the two provided airports specific to a carrier.
+
 ## Summary
 - /airports
 - /carriers
@@ -382,6 +398,7 @@ Return the statistics on the number of minutes delayed as filtered by the provid
 - /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month>
 - /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month>
 - /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month>&reason=\<reason\> 
+- statistics/descriptive?<*airport1*>&<*airport2*>&<carrier_code>
 
 
 # Appendix
