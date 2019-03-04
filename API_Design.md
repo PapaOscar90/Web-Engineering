@@ -318,7 +318,8 @@ Each of these filters is optional and when omitted the data is not filtered by t
 ##### GET
 The statistics as filtered by the provided query parameters.
 
-### `/statistics?<**carrier_code**>&<**airport_code**>&<**month**>&<**year**>`
+### <code>/statistics?<i><u><carrier_code>&<airport_code>&\<month>&\<year></u></i></code>
+
 Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
 This represents the endpoint where the query parameters are required. This is because the statistic must be fully identified in order to modify or delete it.
