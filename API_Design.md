@@ -216,7 +216,7 @@ This will return all carriers operating at the airport denoted by `<airport_code
 ```
 
 ## /statistics
-This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the information about the carrier, the airport, and the time are included.
+This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the required information about the carrier, the airport, and the time needed to uniquely identify the statistic is included.
 ##### GET
 Return all statistics within the dataset.
 ###### Sample result (JSON)
