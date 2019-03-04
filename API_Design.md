@@ -1,13 +1,13 @@
 # API Design
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+<!-- markdown-toc start -->
 **Table of Contents**
 
 - [API Design](#api-design)
     - [Introduction](#introduction)
     - [Dataset](#dataset)
     - [Requirements](#requirements)
-    - [Routes](#routes)
+    - [Endpoints](#Endpoints)
     - [Summary](#summary)
 - [Appendix](#appendix)
     - [Truncated JSON Data](#truncated-json-data)
@@ -17,11 +17,7 @@
 
 
 ## Introduction
-The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. The design was developed and is documented as follows:
-1. Familiarization with the content and structure of the dataset.
-2. Discussion and elaboration on the requirements of the Web API.
-3. Map requirements to routes, providing motivation and specifying potential alternatives.
-4. Summary of the resulting API design to ease implementation detail.
+The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. 
 
 It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change.
 
@@ -85,39 +81,139 @@ From considering the structure of the data, several points become apparent
 2. The data does not provide enough information to accurately link flight's from one carrier between two airports.
 
 ## Requirements
+The specification that was provided details the minimum requires for the API.
+- All endpoints should support representing resources and receiving data in both JSON and CSV.
+- All airports in the dataset should be retrievable.
+- All carriers should be retrievable.
+  - This should filterable by specifying a particular airport.
+- All statistics for a carrier should be retrievable.
+  - This should be filterable by specifying an airport or a month.
+- New statistics for a carrier should be able to be added.
+- Specific statistics for a carrier should be able to be modified.
+- Specific statistics for a carrier should be able to be deleted.
+- The number of on-time flights for a carrier should be retrievable
+  - This should be filterable by specifying an airport or a month.
+- The number of delayed flights for a carrier should be retrievable
+  - This should be filterable by specifying an airport or a month.
+- The number of cancelled flights for a carrier should be retrievable
+  - This should be filterable by specifying an airport or a month.
+- The number of minutes of delay for a carrier should be retrievable.
+  - This should be filterable by specifying a reason (allowing for the filtration of carrier-specific reasons), an airport, or a month.
+- Descriptive statistics for carrier-specific delays averaged between two airports.
+  - This should be filterable by carrier.
 
-## Routes
-All endpoints will support:
-- application/json
-- text/csv
 
-The default serve and recieve is JSON query. The user of the endpoint specifies the media type via the content type header in their http request.
+## Endpoints
+The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type** is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
 ---
 ## /airports/
+This route supports retrieving all airports in the dataset.
 ##### GET
-Return all airports within the USA
+Return all airports within the dataset.
+###### Sample result (JSON)
+**NOTE** some results have been elided by `...`.
+```json
+[
+    {
+        "code": "ATL",
+        "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+    },
+    {
+        "code": "BOS",
+        "name": "Boston, MA: Logan International"
+    },
+    {
+        "code": "BWI",
+        "name": "Baltimore, MD: Baltimore/Washington International Thurgood Marshall"
+    },
+    `...`,
+    {
+        "code": "PHL",
+        "name": "Philadelphia, PA: Philadelphia International"
+    },
+    {
+        "code": "PHX",
+        "name": "Phoenix, AZ: Phoenix Sky Harbor International"
+    },
+    {
+        "code": "BOS",
+        "name": "Boston, MA: Logan International"
+    }
+]
 
-
-##### POST
-Add an airport to the list of airports
-
-### /airports?carrier=<carrier_id>
-##### GET
-This will query the airports for all airports serving <carrier_id>
+```
 
 ## /carriers/
+This route supports retrieving all carriers in the dataset.
 ##### GET
-Return all airports within the USA
+Return all carriers within the dataset.
+###### Sample result (JSON)
+**NOTE** some results have been elided by `...`.
+```json
+[
+    {
+        "code": "AA",
+        "name": "American Airlines Inc."
+    },
+    {
+        "code": "AS",
+        "name": "Alaska Airlines Inc."
+    },
+    {
+        "code": "B6",
+        "name": "JetBlue Airways"
+    },
+    `...`,
+    {
+        "code": "HA",
+        "name": "Hawaiian Airlines Inc."
+    },
+    {
+        "code": "VX",
+        "name": "Virgin America"
+    },
+    {
+        "code": "WN",
+        "name": "Southwest Airlines Co."
+    }
+]
+```
 
-
-##### POST
-Add an airport to the list of airports
-
-
-### /carriers?airport=<airport_id>
+### /carriers?<airport_code>
+This route supports retrieving all carriers in the dataset that operating at the airport specified by `<airport_code>`.
 ##### GET
-This will query the carriers for all carriers operating at <airport_id>.
+This will return all carriers operating at the airport denoted by `<airport_code>`
+###### Sample result (JSON)
+```json
+[
+    {
+        "code": "AA",
+        "name": "American Airlines Inc."
+    },
+    {
+        "code": "AS",
+        "name": "Alaska Airlines Inc."
+    },
+    {
+        "code": "CO",
+        "name": "Continental Air Lines Inc."
+    },
+    `...`,
+    {
+        "code": "UA",
+        "name": "United Air Lines Inc."
+    },
+    {
+        "code": "VX",
+        "name": "Virgin America"
+    },
+    {
+        "code": "WN",
+        "name": "Southwest Airlines Co."
+    }
+]
+```
 
 ### /carriers/statistics?reason=<reason_name>&month=<month_number>&airport=<airport_id>
 ##### GET
