@@ -390,27 +390,26 @@ Allows for retrieval of the descriptive statistics filtered by a carrier.
 Return the descriptive statistics between the two provided airports specific to a carrier.
 
 ## Summary
-The following table summarizes the routes that are to be created. Mandantory query parameters are *italicized* and <u>underlined</u> (if supported).
+The following table summarizes the routes that are to be created. Mandantory query parameters are **bolded**.
 
-| Endpoint                                                                                      | HTTP Verbs               |
-|-----------------------------------------------------------------------------------------------|--------------------------|
-| `/airports`                                                                                   | GET                      |
-| `/carriers`                                                                                   | GET                      |
-| `/carriers?<airport_code>`                                                                    | GET                      |
-| `/statistics`                                                                                 | GET, POST                |
-| `/statistics?<carrier_code>&<airport_code>&<month>`                                           | GET                      |
-| <code>/statistics?<i><u><carrier_code>&<airport_code>&\<month>&\<year></u></i></code>         | GET, PUT, PATCH , DELETE |
-| `/statistics/on-time`                                                                         | GET                      |
-| `/statistics/on-time?<carrier_code>&<airport_code>&<month>`                                   | GET                      |
-| `/statistics/delayed`                                                                         | GET                      |
-| `/statistics/delayed?<carrier_code>&<airport_code>&<month>`                                   | GET                      |
-| `/statistics/cancelled`                                                                       | GET                      |
-| `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`                                 | GET                      |
-| `/statistics/minutes_delayed`                                                                 | GET                      |
-| `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`                  | GET                      |
-| <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u></code>           | GET                      |
-| <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u>&<carrier></code> | GET                      |
-|                                                                                               |                          |
+| Endpoint                                                                               | HTTP Verbs               |
+|----------------------------------------------------------------------------------------|--------------------------|
+| `/airports`                                                                            | GET                      |
+| `/carriers`                                                                            | GET                      |
+| `/carriers?<airport_code>`                                                             | GET                      |
+| `/statistics`                                                                          | GET, POST                |
+| `/statistics?<carrier_code>&<airport_code>&<month>`                                    | GET                      |
+| <code>/statistics?<b><carrier_code>&<airport_code>&\<month>&\<year></b></code>         | GET, PUT, PATCH , DELETE |
+| `/statistics/on-time`                                                                  | GET                      |
+| `/statistics/on-time?<carrier_code>&<airport_code>&<month>`                            | GET                      |
+| `/statistics/delayed`                                                                  | GET                      |
+| `/statistics/delayed?<carrier_code>&<airport_code>&<month>`                            | GET                      |
+| `/statistics/cancelled`                                                                | GET                      |
+| `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`                          | GET                      |
+| `/statistics/minutes_delayed`                                                          | GET                      |
+| `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`           | GET                      |
+| <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b></code>           | GET                      |
+| <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b>&<carrier></code> | GET                      |
 
 # Appendix
 ## JSON Example Data
