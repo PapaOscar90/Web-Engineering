@@ -215,6 +215,96 @@ This will return all carriers operating at the airport denoted by `<airport_code
 ]
 ```
 
+## /statistics
+This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the information about the carrier, the airport, and the time are included.
+##### GET
+Return all statistics within the dataset.
+###### Sample result (JSON)
+**NOTE** some results have been elided by `...`.
+```json
+[
+    {
+        "airport": {
+            "code": "ATL",
+            "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+        },
+        "carrier": {
+            "code": "AA",
+            "name": "American Airlines Inc."
+        },
+        "statistics": {
+            "flights": {
+                "cancelled": 5,
+                "delayed": 186,
+                "diverted": 0,
+                "on time": 561,
+                "total": 752
+            },
+            "minutes delayed": {
+                "carrier": 1367,
+                "late aircraft": 1269,
+                "national aviation system": 3817,
+                "security": 139,
+                "total": 8314,
+                "weather": 1722
+            },
+            "# of delays": {
+                "carrier": 34,
+                "late aircraft": 18,
+                "national aviation system": 105,
+                "security": 2,
+                "weather": 28
+            }
+        },
+        "time": {
+            "label": "2003/6",
+            "month": 6,
+            "year": 2003
+        }
+    },
+    {
+        "airport": {
+            "code": "BOS",
+            "name": "Boston, MA: Logan International"
+        },
+        "carrier": {
+            "code": "AA",
+            "name": "American Airlines Inc."
+        },
+        "statistics": {
+            "flights": {
+                "cancelled": 7,
+                "delayed": 225,
+                "diverted": 0,
+                "on time": 1034,
+                "total": 1266
+            },
+            "minutes delayed": {
+                "carrier": 4201,
+                "late aircraft": 3043,
+                "national aviation system": 3067,
+                "security": 45,
+                "total": 12139,
+                "weather": 1783
+            },
+            "# of delays": {
+                "carrier": 69,
+                "late aircraft": 46,
+                "national aviation system": 84,
+                "security": 2,
+                "weather": 24
+            }
+        },
+        "time": {
+            "label": "2003/6",
+            "month": 6,
+            "year": 2003
+        }
+    },
+    ...
+]
+```
+
 ### /carriers/statistics?reason=<reason_name>&month=<month_number>&airport=<airport_id>
 ##### GET
 ###### reason=<reason_name>
