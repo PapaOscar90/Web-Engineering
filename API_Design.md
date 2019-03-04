@@ -127,7 +127,7 @@ Return all airports within the dataset.
         "code": "BWI",
         "name": "Baltimore, MD: Baltimore/Washington International Thurgood Marshall"
     },
-    `...`,
+    ...,
     {
         "code": "PHL",
         "name": "Philadelphia, PA: Philadelphia International"
@@ -164,7 +164,7 @@ Return all carriers within the dataset.
         "code": "B6",
         "name": "JetBlue Airways"
     },
-    `...`,
+    ...,
     {
         "code": "HA",
         "name": "Hawaiian Airlines Inc."
@@ -199,7 +199,7 @@ This will return all carriers operating at the airport denoted by `<airport_code
         "code": "CO",
         "name": "Continental Air Lines Inc."
     },
-    `...`,
+    ...,
     {
         "code": "UA",
         "name": "United Air Lines Inc."
