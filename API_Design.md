@@ -109,7 +109,7 @@ The requirement of supporting communication in JSON and CSV will be met by using
 All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
 
 ---
-## /airports
+## `/airports`
 This route supports retrieving all airports in the dataset.
 ##### GET
 Return all airports within the dataset.
@@ -146,7 +146,7 @@ Return all airports within the dataset.
 
 ```
 
-## /carriers
+## `/carriers`
 This route supports retrieving all carriers in the dataset.
 ##### GET
 Return all carriers within the dataset.
@@ -182,7 +182,7 @@ Return all carriers within the dataset.
 ]
 ```
 
-### /carriers?<airport_code>
+### `/carriers?<airport_code>`
 This route supports retrieving all carriers in the dataset that operate at the airport specified by `<airport_code>`.
 ##### GET
 This will return all carriers operating at the airport denoted by `<airport_code>`
@@ -217,7 +217,7 @@ This will return all carriers operating at the airport denoted by `<airport_code
 ]
 ```
 
-## /statistics
+## `/statistics`
 This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the required information about the carrier, the airport, and the time needed to uniquely identify the statistic is included.
 ##### GET
 Return all statistics within the dataset.
@@ -311,14 +311,14 @@ Add a new statistic to the dataset. The request requires the data in the request
 
 Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
 
-### /statistics?<carrier_code>&<airport_code>&<month>
+### `/statistics?<carrier_code>&<airport_code>&<month>`
 Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month>`.
 
 Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
 ##### GET
 The statistics as filtered by the provided query parameters.
 
-### /statistics?<**carrier_code**>&<**airport_code**>&<**month**>&<**year**>
+### `/statistics?<**carrier_code**>&<**airport_code**>&<**month**>&<**year**>`
 Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
 This represents the endpoint where the filters are required. This is because the statistic must be fully identified in order to modify or delete it.
