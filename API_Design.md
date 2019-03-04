@@ -181,7 +181,7 @@ Return all carriers within the dataset.
 ```
 
 ### /carriers?<airport_code>
-This route supports retrieving all carriers in the dataset that operating at the airport specified by `<airport_code>`.
+This route supports retrieving all carriers in the dataset that operate at the airport specified by `<airport_code>`.
 ##### GET
 This will return all carriers operating at the airport denoted by `<airport_code>`
 ###### Sample result (JSON)
