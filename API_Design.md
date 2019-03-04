@@ -336,6 +336,32 @@ Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<mont
 
 The server should respond with a 204 status code on success.
 
+## `/statistics/on-time`
+Get the statistics on the number of on-time flights.
+##### GET
+Return the statistics on the number of on-time flights.
+### `/statistics/on-time?<carrier_code>&<airport_code>&<month>`
+Get the statistics on the number of on-time flights where the carrier, the airport, and the month may be specified.
+##### GET
+Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
+
+## `/statistics/delayed`
+Get the statistics on the number of delayed flights.
+##### GET
+Return the statistics on the number of delayed flights.
+### `/statistics/delayed?<carrier_code>&<airport_code>&<month>`
+Get the statistics on the number of delayed flights where the carrier, the airport, and the month may be specified.
+##### GET
+Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
+
+## `/statistics/cancelled`
+Get the statistics on the number of cancelled flights.
+##### GET
+Return the statistics on the number of cancelled flights.
+### `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`
+Get the statistics on the number of cancelled flights where the carrier, the airport, and the month may be specified.
+##### GET
+Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
 
 
 ### /carriers/statistics?reason=<reason_name>&month=<month>&airport=<airport_id>
