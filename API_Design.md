@@ -76,9 +76,7 @@ For this intersection the record also specifies additional statistics.
 }
 ```
 
-From considering the structure of the data, several points become apparent
-1. As it stands the data does not enforce a hierarchical relationship between `airport`s, `carrier`s, `time`s, or `statistics`. 
-2. The data does not provide enough information to accurately link flight's from one carrier between two airports.
+By considering the structure of the data it is apparent the data does not enforce a hierarchical relationship between `airport`s, `carrier`s, `time`s, or `statistics`. This is critical to consider as it influences the choice of using query parameters or path segments to specify data. According to [rfc3986](https://tools.ietf.org/html/rfc3986#section-3.4), query parameters may only be used to represent non-hierarchical data.
 
 ## Requirements
 The specification that was provided details the minimum requires for the API.
