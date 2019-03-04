@@ -311,16 +311,15 @@ Add a new statistic to the dataset. The request requires the data in the request
 
 Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
 
-### /statistics?<carrier_code>&<airport_code>&<month_number>
-Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month_number>`.
+### /statistics?<carrier_code>&<airport_code>&<month>
+Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month>`.
 
 Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
 ##### GET
 The statistics as filtered by the provided query parameters.
 
-### /statistics?<**carrier_code**>&<**airport_code**>&<**month_number**>&<**year_number**>
-Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month_number>`, `<year_number>`
-Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month_number>`.
+### /statistics?<**carrier_code**>&<**airport_code**>&<**month**>&<**year**>
+Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
 This represents the endpoint where the filters are required. This is because the statistic must be fully identified in order to modify or delete it.
 ##### GET
@@ -332,16 +331,16 @@ The statistics identified by the query parameters is updated with the statics pr
 
 **NOTE** best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs.
 ##### DELETE
-Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month_number>`, and `<year_number>`.
+Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
 The server should respond with a 204 status code.
 
 
-### /carriers/statistics?reason=<reason_name>&month=<month_number>&airport=<airport_id>
+### /carriers/statistics?reason=<reason_name>&month=<month>&airport=<airport_id>
 ##### GET
 ###### reason=<reason_name>
 This can be a singular reason, a set, or a name that refers to a set of carrier specific. If empty, returns all.
-###### month=<month_number>
+###### month=<month>
 This designates the month which should be filtered on the month field.
 ###### airport=<airport_id>
 This designates the airport which should be filtered on the airport field (aka, should this airport).
@@ -355,55 +354,55 @@ This designates the airport which should be filtered on the to field.
 ###### carrier=<carrier_id>
 This designates the airport which should be filtered on the carrier field.
 
-### /carriers/<carrier_id>/statistics?from=<airport_id>&to=<airport_id>&month=<month_number>
+### /carriers/<carrier_id>/statistics?from=<airport_id>&to=<airport_id>&month=<month>
 ##### GET
 This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
 ###### from=<airport_id>
 This designates the airport which should be filtered on the from field.
 ###### to=<airport_id>
 This designates the airport which should be filtered on the to field.
-###### month=<month_number>
+###### month=<month>
 This designates the month which should be filtered on the month field.
 
-### /carriers/<carrier_id>/on-time?from=<airport_id>&to=<airport_id>&month=<month_number>
+### /carriers/<carrier_id>/on-time?from=<airport_id>&to=<airport_id>&month=<month>
 ##### GET
 This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
 ###### from=<airport_id>
 This designates the airport which should be filtered on the from field.
 ###### to=<airport_id>
 This designates the airport which should be filtered on the to field.
-###### month=<month_number>
+###### month=<month>
 This designates the month which should be filtered on the month field.
 
-### /carriers/<carrier_id>/delayed?from=<airport_id>&to=<airport_id>&month=<month_number>
+### /carriers/<carrier_id>/delayed?from=<airport_id>&to=<airport_id>&month=<month>
 ##### GET
 This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
 ###### from=<airport_id>
 This designates the airport which should be filtered on the from field.
 ###### to=<airport_id>
 This designates the airport which should be filtered on the to field.
-###### month=<month_number>
+###### month=<month>
 This designates the month which should be filtered on the month field.
 
-### /carriers/<carrier_id>/cancelled?from=<airport_id>&to=<airport_id>&month=<month_number>
+### /carriers/<carrier_id>/cancelled?from=<airport_id>&to=<airport_id>&month=<month>
 ##### GET
 This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
 ###### from=<airport_id>
 This designates the airport which should be filtered on the from field.
 ###### to=<airport_id>
 This designates the airport which should be filtered on the to field.
-###### month=<month_number>
+###### month=<month>
 This designates the month which should be filtered on the month field.
 
 ## Summary
 - /airports
 - /carriers
 - /carriers?airport=<airport_code>
-- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month_number>
-- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month_number>&reason=\<reason\> 
+- /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month>
+- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month>
+- /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month>
+- /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month>
+- /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month>&reason=\<reason\> 
 
 
 # Appendix
