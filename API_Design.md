@@ -11,7 +11,6 @@
     - [Summary](#summary)
 - [Appendix](#appendix)
     - [Truncated JSON Data](#truncated-json-data)
-- [Reworked Routes](#reworked-routes)
 
 <!-- markdown-toc end -->
 
