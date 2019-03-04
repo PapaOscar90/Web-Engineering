@@ -262,46 +262,46 @@ Return all statistics within the dataset.
             "year": 2003
         }
     },
+    ...,
     {
         "airport": {
             "code": "BOS",
             "name": "Boston, MA: Logan International"
         },
         "carrier": {
-            "code": "AA",
-            "name": "American Airlines Inc."
+            "code": "WN",
+            "name": "Southwest Airlines Co."
         },
         "statistics": {
             "flights": {
-                "cancelled": 7,
-                "delayed": 225,
+                "cancelled": 27,
+                "delayed": 137,
                 "diverted": 0,
-                "on time": 1034,
-                "total": 1266
+                "on time": 740,
+                "total": 904
             },
             "minutes delayed": {
-                "carrier": 4201,
-                "late aircraft": 3043,
-                "national aviation system": 3067,
-                "security": 45,
-                "total": 12139,
-                "weather": 1783
+                "carrier": 1894,
+                "late aircraft": 2738,
+                "national aviation system": 1300,
+                "security": 0,
+                "total": 6264,
+                "weather": 332
             },
             "# of delays": {
-                "carrier": 69,
-                "late aircraft": 46,
-                "national aviation system": 84,
-                "security": 2,
-                "weather": 24
+                "carrier": 48,
+                "late aircraft": 55,
+                "national aviation system": 32,
+                "security": 0,
+                "weather": 2
             }
         },
         "time": {
-            "label": "2003/6",
-            "month": 6,
-            "year": 2003
+            "label": "2016/1",
+            "month": 1,
+            "year": 2016
         }
-    },
-    ...
+    }
 ]
 ```
 
