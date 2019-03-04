@@ -11,7 +11,7 @@
     - [Endpoints](#Endpoints)
     - [Summary](#summary)
 - [Appendix](#appendix)
-    - [Truncated JSON Data](#truncated-json-data)
+    - [JSON Example Data](#json-example-data)
 
 <!-- markdown-toc end -->
 
@@ -364,77 +364,28 @@ Get the statistics on the number of cancelled flights where the carrier, the air
 Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
 
 
-### /carriers/statistics?reason=<reason_name>&month=<month>&airport=<airport_id>
+## `/carriers/statistics/minutes_delayed`
+Get the statistics on the minutes delayed.
 ##### GET
-###### reason=<reason_name>
-This can be a singular reason, a set, or a name that refers to a set of carrier specific. If empty, returns all.
-###### month=<month>
-This designates the month which should be filtered on the month field.
-###### airport=<airport_id>
-This designates the airport which should be filtered on the airport field (aka, should this airport).
-
-### /carriers/statistics/delays?from=<airport_id>&to=<airport_id>&carrier=<carrier_id>
+Return the statistics on the number of minutes delayed.
+### `/carriers/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`
+Get the statistics on the minutes delayed filtered by `<carrier_code>`, `<airport_code>`, `<month>`, and `<reason>`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ##### GET
-###### from=<airport_id>
-This designates the airport which should be filtered on the from field.
-###### to=<airport_id>
-This designates the airport which should be filtered on the to field.
-###### carrier=<carrier_id>
-This designates the airport which should be filtered on the carrier field.
-
-### /carriers/<carrier_id>/statistics?from=<airport_id>&to=<airport_id>&month=<month>
-##### GET
-This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
-###### from=<airport_id>
-This designates the airport which should be filtered on the from field.
-###### to=<airport_id>
-This designates the airport which should be filtered on the to field.
-###### month=<month>
-This designates the month which should be filtered on the month field.
-
-### /carriers/<carrier_id>/on-time?from=<airport_id>&to=<airport_id>&month=<month>
-##### GET
-This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
-###### from=<airport_id>
-This designates the airport which should be filtered on the from field.
-###### to=<airport_id>
-This designates the airport which should be filtered on the to field.
-###### month=<month>
-This designates the month which should be filtered on the month field.
-
-### /carriers/<carrier_id>/delayed?from=<airport_id>&to=<airport_id>&month=<month>
-##### GET
-This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
-###### from=<airport_id>
-This designates the airport which should be filtered on the from field.
-###### to=<airport_id>
-This designates the airport which should be filtered on the to field.
-###### month=<month>
-This designates the month which should be filtered on the month field.
-
-### /carriers/<carrier_id>/cancelled?from=<airport_id>&to=<airport_id>&month=<month>
-##### GET
-This will query the statistics of a carrier. The query strings are optional, if they are not provided the data is not filtered.
-###### from=<airport_id>
-This designates the airport which should be filtered on the from field.
-###### to=<airport_id>
-This designates the airport which should be filtered on the to field.
-###### month=<month>
-This designates the month which should be filtered on the month field.
+Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
 
 ## Summary
 - /airports
 - /carriers
 - /carriers?airport=<airport_code>
 - /statistics?carrier=<carrier_code>&airport=<airport_code>&month=<month>
-- /statistics/on_time?carrier=<carrier_code>&airport=<airport_code>&month=<month>
+- /statistics/on-time?carrier=<carrier_code>&airport=<airport_code>&month=<month>
 - /statistics/delayed?carrier=<carrier_code>&airport=<airport_code>&month=<month>
 - /statistics/cancelled?carrier=<carrier_code>&airport=<airport_code>&month=<month>
 - /statistics/delayed/number_of_minutes?**carrier=<carrier_code**>&airport=<airport_code>&month=<month>&reason=\<reason\> 
 
 
 # Appendix
-## Truncated JSON Data
+## JSON Example Data
 ```json
 [
     {
