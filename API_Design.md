@@ -334,7 +334,8 @@ The statistics identified by the query parameters is updated with the statics pr
 ##### DELETE
 Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
 
-The server should respond with a 204 status code.
+The server should respond with a 204 status code on success.
+
 
 
 ### /carriers/statistics?reason=<reason_name>&month=<month>&airport=<airport_id>
