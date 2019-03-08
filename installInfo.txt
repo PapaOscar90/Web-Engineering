@@ -1,0 +1,8 @@
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+nvm install node
+npm install --global yarn
+// check if yarn on path
+yarn global add bs-platform // And add yarn to path, or install bs-platform through node also
+npx create-react-app frontend --scripts-version reason-scripts
+yarn start
+// Now install editor plugin (reasonml.github.io/docs/en/editor-plugins)
