@@ -3,13 +3,13 @@ mod tests;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Airport {
     pub code: String,
     pub name: String,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Flights {
     pub cancelled: i32,
     pub delayed: i32,
@@ -19,7 +19,7 @@ pub struct Flights {
     pub total: i32,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct NumberOfDelays {
     pub carrier: i32,
     #[serde(rename = "late aircraft")]
@@ -30,7 +30,7 @@ pub struct NumberOfDelays {
     pub weather: i32,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct MinutesDelayed {
     pub carrier: i32,
     #[serde(rename = "late aircraft")]
@@ -42,7 +42,7 @@ pub struct MinutesDelayed {
     pub weather: i32,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Statistics {
     pub flights: Flights,
     #[serde(rename = "minutes delayed")]
@@ -51,20 +51,20 @@ pub struct Statistics {
     pub number_of_delays: NumberOfDelays,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Time {
     pub label: String,
     pub month: u32,
     pub year: u32,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Carrier {
     pub code: String,
     pub name: String,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 pub struct Record {
     pub airport: Airport,
     pub carrier: Carrier,
@@ -72,7 +72,7 @@ pub struct Record {
     pub time: Time,
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
 #[serde(transparent)]
 pub struct DataStore {
     pub records: Vec<Record>,
