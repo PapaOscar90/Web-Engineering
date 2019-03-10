@@ -1,7 +1,7 @@
 * API Design
-#+BEGIN_QUOTE
-Group 21
-#+END_QUOTE
+  #+BEGIN_QUOTE
+  Group 21
+  #+END_QUOTE
 
 **** Table of Contents                                    :TOC_2_gh:noexport:
 - [[#api-design][API Design]]
@@ -73,7 +73,7 @@ Group 21
      }
    #+END_SRC
 
-   By considering the structure of the data it is apparent the data does not enforce a hierarchical relationship between `airport`s, `carrier`s, `time`s, or `statistics`. This is critical to consider as it influences the choice of using query parameters or path segments to specify data. According to [[https://tools.ietf.org/html/rfc3986#section-3.4][rfc3986]], query parameters may only be used to represent non-hierarchical data.
+   By considering the structure of the data it is apparent the data does not enforce a hierarchical relationship between =airport=s, =carrier=s, =time=s, or =statistics=. This is critical to consider as it influences the choice of using query parameters or path segments to specify data. According to [[https://tools.ietf.org/html/rfc3986#section-3.4][rfc3986]], query parameters may only be used to represent non-hierarchical data.
 
 ** Requirements
    The specification that was provided details the minimum requires for the API.
@@ -99,11 +99,11 @@ Group 21
 
 
 ** Endpoints
-   The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
+   The requirement of supporting communication in JSON and CSV will be met by using the =Content-Type= header. A user of the API will specify that their request is in =application/json= or =text/csv=, and the API will respond accordingly. If the =Content-Type= is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
    All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
 
-*** `/airports`
+*** =/airports=
     This route supports retrieving all airports in the dataset.
 ***** GET
       Return all airports within the dataset.
@@ -140,12 +140,12 @@ Group 21
 
        #+END_SRC
 
-*** `/carriers`
+*** =/carriers=
     This route supports retrieving all carriers in the dataset.
 ***** GET
       Return all carriers within the dataset.
 ****** Sample result (JSON)
-       *NOTE* some results have been elided by `...`.
+       *NOTE* some results have been elided by =...=.
        #+BEGIN_SRC json
          [
              {
@@ -176,10 +176,10 @@ Group 21
          ]
        #+END_SRC
 
-**** `/carriers?<airport_code>`
-     This route supports retrieving all carriers in the dataset that operate at the airport specified by `<airport_code>`.
+**** =/carriers?<airport_code>=
+     This route supports retrieving all carriers in the dataset that operate at the airport specified by =<airport_code>=.
 ***** GET
-      This will return all carriers operating at the airport denoted by `<airport_code>`
+      This will return all carriers operating at the airport denoted by =<airport_code>=
 ****** Sample result (JSON)
        #+BEGIN_SRC json
          [
@@ -211,12 +211,12 @@ Group 21
          ]
        #+END_SRC
 
-*** `/statistics`
+*** =/statistics=
     This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the required information about the carrier, the airport, and the time needed to uniquely identify the statistic is included.
 ***** GET
       Return all statistics within the dataset.
 ****** Sample result (JSON)
-       *NOTE* some results have been elided by `...`.
+       *NOTE* some results have been elided by =...=.
        #+BEGIN_SRC json
          [
              {
@@ -305,8 +305,8 @@ Group 21
 
       Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
 
-**** `/statistics?<carrier_code>&<airport_code>&<month>`
-     Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month>`.
+**** =/statistics?<carrier_code>&<airport_code>&<month>=
+     Return all statistics within the dataset filtered by the carrier identified by the =<carrier_code>=, the airport identified by the =<airport_code>=, and the month corresponding to the =<month>=.
 
      Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
 ***** GET
@@ -314,7 +314,7 @@ Group 21
 
 **** <code>/statistics?<i><u><carrier_code>&<airport_code>&\<month>&\<year></u></i></code>
 
-     Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
+     Interact with statistics in the dataset as identified by =<carrier_code>=, =<airport_code>=, =<month>=, and =<year>=.
 
      This represents the endpoint where the query parameters are required. This is because the statistic must be fully identified in order to modify or delete it.
 ***** GET
@@ -324,53 +324,53 @@ Group 21
 ***** PATCH
       The statistics identified by the query parameters is updated with the statics provided in the request body. The request body need only include the changed statistics and not any information on the airport, carrier, or time.
 
-      *NOTE* best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs.
+      *NOTE* best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the =Content-Type= header being =text/csv=. There does not appear to be a CSV patch format that's specified for use in REST APIs.
 ***** DELETE
-      Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
+      Delete the statistic specified by the =<carrier_code>=, =<airport_code>=, =<month>=, and =<year>=.
 
       The server should respond with a 204 status code on success.
 
-*** `/statistics/on-time`
+*** =/statistics/on-time=
     Get the statistics on the number of on-time flights.
 ***** GET
       Return the statistics on the number of on-time flights.
-**** `/statistics/on-time?<carrier_code>&<airport_code>&<month>`
+**** =/statistics/on-time?<carrier_code>&<airport_code>&<month>=
      Get the statistics on the number of on-time flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
 
-*** `/statistics/delayed`
+*** =/statistics/delayed=
     Get the statistics on the number of delayed flights.
 ***** GET
       Return the statistics on the number of delayed flights.
-**** `/statistics/delayed?<carrier_code>&<airport_code>&<month>`
+**** =/statistics/delayed?<carrier_code>&<airport_code>&<month>=
      Get the statistics on the number of delayed flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
 
-*** `/statistics/cancelled`
+*** =/statistics/cancelled=
     Get the statistics on the number of cancelled flights.
 ***** GET
       Return the statistics on the number of cancelled flights.
-**** `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`
+**** =/statistics/cancelled?<carrier_code>&<airport_code>&<month>=
      Get the statistics on the number of cancelled flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
 
 
-*** `/statistics/minutes_delayed`
+*** =/statistics/minutes_delayed=
     Get the statistics on the minutes delayed.
 ***** GET
       Return the statistics on the number of minutes delayed.
-**** `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`
-     Get the statistics on the minutes delayed filtered by `<carrier_code>`, `<airport_code>`, `<month>`, and `<reason>`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
+**** =/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>=
+     Get the statistics on the minutes delayed filtered by =<carrier_code>=, =<airport_code>=, =<month>=, and =<reason>=. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ***** GET
       Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
 
 *** <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u></code>
     *NOTE* the name of this endpoint is under evaluation.
 
-    Represents the descriptive statistics (mean, median, standard deviation, etc...) of the averages between 2 airports. The query parameters for the two airports are required. What precise statistics have not been specified in the provided specification, so this route will return these averages and the descriptive statistics for all the `statistics` contained in the dataset.
+    Represents the descriptive statistics (mean, median, standard deviation, etc...) of the averages between 2 airports. The query parameters for the two airports are required. What precise statistics have not been specified in the provided specification, so this route will return these averages and the descriptive statistics for all the =statistics= contained in the dataset.
 
 ***** GET
       Return the descriptive statistics between the two provided airports.
@@ -388,20 +388,20 @@ Group 21
 
    | Endpoint                                                                               | HTTP Verbs               |
    |----------------------------------------------------------------------------------------|--------------------------|
-   | `/airports`                                                                            | GET                      |
-   | `/carriers`                                                                            | GET                      |
-   | `/carriers?<airport_code>`                                                             | GET                      |
-   | `/statistics`                                                                          | GET, POST                |
-   | `/statistics?<carrier_code>&<airport_code>&<month>`                                    | GET                      |
+   | =/airports=                                                                            | GET                      |
+   | =/carriers=                                                                            | GET                      |
+   | =/carriers?<airport_code>=                                                             | GET                      |
+   | =/statistics=                                                                          | GET, POST                |
+   | =/statistics?<carrier_code>&<airport_code>&<month>=                                    | GET                      |
    | <code>/statistics?<b><carrier_code>&<airport_code>&\<month>&\<year></b></code>         | GET, PUT, PATCH , DELETE |
-   | `/statistics/on-time`                                                                  | GET                      |
-   | `/statistics/on-time?<carrier_code>&<airport_code>&<month>`                            | GET                      |
-   | `/statistics/delayed`                                                                  | GET                      |
-   | `/statistics/delayed?<carrier_code>&<airport_code>&<month>`                            | GET                      |
-   | `/statistics/cancelled`                                                                | GET                      |
-   | `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`                          | GET                      |
-   | `/statistics/minutes_delayed`                                                          | GET                      |
-   | `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`           | GET                      |
+   | =/statistics/on-time=                                                                  | GET                      |
+   | =/statistics/on-time?<carrier_code>&<airport_code>&<month>=                            | GET                      |
+   | =/statistics/delayed=                                                                  | GET                      |
+   | =/statistics/delayed?<carrier_code>&<airport_code>&<month>=                            | GET                      |
+   | =/statistics/cancelled=                                                                | GET                      |
+   | =/statistics/cancelled?<carrier_code>&<airport_code>&<month>=                          | GET                      |
+   | =/statistics/minutes_delayed=                                                          | GET                      |
+   | =/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>=           | GET                      |
    | <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b></code>           | GET                      |
    | <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b>&<carrier></code> | GET                      |
 
