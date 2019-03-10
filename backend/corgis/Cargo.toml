@@ -3,6 +3,7 @@ name = "corgis"
 version = "0.1.0"
 authors = ["Troy Karan Harrison <NoxPardalis@protonmail.com>"]
 edition = "2018"
+publish = false
 
 [dependencies]
 serde = { version = "1.0.88", features = ["derive"]}
