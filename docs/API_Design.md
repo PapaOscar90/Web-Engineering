@@ -388,7 +388,7 @@ Allows for retrieval of the descriptive statistics filtered by a carrier.
 Return the descriptive statistics between the two provided airports specific to a carrier.
 
 ## Summary
-The following table summarizes the routes that are to be created. Mandantory query parameters are **bolded**.
+The following table summarizes the routes that are to be created. Mandatory query parameters are in **bold**.
 
 | Endpoint                                                                               | HTTP Verbs               |
 |----------------------------------------------------------------------------------------|--------------------------|
