@@ -104,7 +104,7 @@
 
 -----
 
-*** =/airports=
+*** /airports
     This route supports retrieving all airports in the dataset.
 ***** GET
       Return all airports within the dataset.
@@ -141,7 +141,7 @@
 
        #+END_SRC
 
-*** =/carriers=
+*** /carriers
     This route supports retrieving all carriers in the dataset.
 ***** GET
       Return all carriers within the dataset.
@@ -177,7 +177,7 @@
          ]
        #+END_SRC
 
-**** =/carriers?<airport_code>=
+**** /carriers?<airport_code>
      This route supports retrieving all carriers in the dataset that operate at the airport specified by =<airport_code>=.
 ***** GET
       This will return all carriers operating at the airport denoted by =<airport_code>=
@@ -212,7 +212,7 @@
          ]
        #+END_SRC
 
-*** =/statistics=
+*** /statistics
     This route supports retrieving and manipulating the statistics in the dataset. When retrieving the statistics, the required information about the carrier, the airport, and the time needed to uniquely identify the statistic is included.
 ***** GET
       Return all statistics within the dataset.
@@ -306,14 +306,14 @@
 
       Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
 
-**** =/statistics?<carrier_code>&<airport_code>&<month>=
+**** /statistics?<carrier_code>&<airport_code>&<month>
      Return all statistics within the dataset filtered by the carrier identified by the =<carrier_code>=, the airport identified by the =<airport_code>=, and the month corresponding to the =<month>=.
 
      Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
 ***** GET
       The statistics as filtered by the provided query parameters.
 
-**** ~/statistics?~ /~<carrier_code>&<airport_code>&<month>&<year>~/
+**** /statistics?​/<carrier_code>&<airport_code>&<month>&<year>/
 
      Interact with statistics in the dataset as identified by =<carrier_code>=, =<airport_code>=, =<month>=, and =<year>=.
 
@@ -331,39 +331,39 @@
 
       The server should respond with a 204 status code on success.
 
-*** =/statistics/on-time=
+*** /statistics/on-time
     Get the statistics on the number of on-time flights.
 ***** GET
       Return the statistics on the number of on-time flights.
-**** =/statistics/on-time?<carrier_code>&<airport_code>&<month>=
+**** /statistics/on-time?<carrier_code>&<airport_code>&<month>
      Get the statistics on the number of on-time flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
 
-*** =/statistics/delayed=
+*** /statistics/delayed
     Get the statistics on the number of delayed flights.
 ***** GET
       Return the statistics on the number of delayed flights.
-**** =/statistics/delayed?<carrier_code>&<airport_code>&<month>=
+**** /statistics/delayed?<carrier_code>&<airport_code>&<month>
      Get the statistics on the number of delayed flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
 
-*** =/statistics/cancelled=
+*** /statistics/cancelled
     Get the statistics on the number of cancelled flights.
 ***** GET
       Return the statistics on the number of cancelled flights.
-**** =/statistics/cancelled?<carrier_code>&<airport_code>&<month>=
+**** /statistics/cancelled?<carrier_code>&<airport_code>&<month>
      Get the statistics on the number of cancelled flights where the carrier, the airport, and the month may be specified.
 ***** GET
       Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
 
 
-*** =/statistics/minutes_delayed=
+*** /statistics/minutes_delayed
     Get the statistics on the minutes delayed.
 ***** GET
       Return the statistics on the number of minutes delayed.
-**** =/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>=
+**** /statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>
      Get the statistics on the minutes delayed filtered by =<carrier_code>=, =<airport_code>=, =<month>=, and =<reason>=. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ***** GET
       Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
