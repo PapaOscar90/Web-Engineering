@@ -102,6 +102,8 @@
 
    All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
 
+-----
+
 *** =/airports=
     This route supports retrieving all airports in the dataset.
 ***** GET
