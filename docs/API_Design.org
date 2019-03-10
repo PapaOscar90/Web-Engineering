@@ -313,7 +313,7 @@
 ***** GET
       The statistics as filtered by the provided query parameters.
 
-**** <code>/statistics?<i><u><carrier_code>&<airport_code>&\<month>&\<year></u></i></code>
+**** ~/statistics?~ /~<carrier_code>&<airport_code>&<month>&<year>~/
 
      Interact with statistics in the dataset as identified by =<carrier_code>=, =<airport_code>=, =<month>=, and =<year>=.
 
