@@ -180,10 +180,10 @@ Return all carriers within the dataset.
 ]
 ```
 
-### `/carriers?<airport_code>`
-This route supports retrieving all carriers in the dataset that operate at the airport specified by `<airport_code>`.
+### `/carriers?{airport_code}`
+This route supports retrieving all carriers in the dataset that operate at the airport specified by `{airport_code}`.
 ##### GET
-This will return all carriers operating at the airport denoted by `<airport_code>`
+This will return all carriers operating at the airport denoted by `{airport_code}`
 ###### Sample result (JSON)
 ```json
 [
@@ -309,16 +309,16 @@ Add a new statistic to the dataset. The request requires the data in the request
 
 Alongside the 200 status code, the server should respond with a payload of the statistic that was just added.
 
-### `/statistics?<carrier_code>&<airport_code>&<month>`
-Return all statistics within the dataset filtered by the carrier identified by the `<carrier_code>`, the airport identified by the `<airport_code>`, and the month corresponding to the `<month>`.
+### `/statistics?{carrier_code}&{airport_code}&{month}`
+Return all statistics within the dataset filtered by the carrier identified by the `{carrier_code}`, the airport identified by the `{airport_code}`, and the month corresponding to the `{month}`.
 
 Each of these filters is optional and when omitted the data is not filtered by that omitted value (the full range for that value is returned**.
 ##### GET
 The statistics as filtered by the provided query parameters.
 
-### <code>/statistics?<i><u><carrier_code>&<airport_code>&\<month>&\<year></u></i></code>
+### <code>/statistics?<i><u>{carrier_code}&{airport_code}&{month}&{year}</u></i></code>
 
-Interact with statistics in the dataset as identified by `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
+Interact with statistics in the dataset as identified by `{carrier_code}`, `{airport_code}`, `{month}`, and `{year}`.
 
 This represents the endpoint where the query parameters are required. This is because the statistic must be fully identified in order to modify or delete it.
 ##### GET
@@ -330,7 +330,7 @@ The statistics identified by the query parameters is updated with the statics pr
 
 *NOTE* best practices involve making use of the JSON patch format. We are uncertain of how this should be handled in the case of the `Content-Type` header being `text/csv`. There does not appear to be a CSV patch format that's specified for use in REST APIs. 
 ##### DELETE
-Delete the statistic specified by the `<carrier_code>`, `<airport_code>`, `<month>`, and `<year>`.
+Delete the statistic specified by the `{carrier_code}`, `{airport_code}`, `{month}`, and `{year}`.
 
 The server should respond with a 204 status code on success.
 
@@ -338,7 +338,7 @@ The server should respond with a 204 status code on success.
 Get the statistics on the number of on-time flights.
 ##### GET
 Return the statistics on the number of on-time flights.
-### `/statistics/on-time?<carrier_code>&<airport_code>&<month>`
+### `/statistics/on-time?{carrier_code}&{airport_code}&{month}`
 Get the statistics on the number of on-time flights where the carrier, the airport, and the month may be specified.
 ##### GET
 Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
@@ -347,7 +347,7 @@ Return the statistics on the number of on-time flights filtered by the specified
 Get the statistics on the number of delayed flights.
 ##### GET
 Return the statistics on the number of delayed flights.
-### `/statistics/delayed?<carrier_code>&<airport_code>&<month>`
+### `/statistics/delayed?{carrier_code}&{airport_code}&{month}`
 Get the statistics on the number of delayed flights where the carrier, the airport, and the month may be specified.
 ##### GET
 Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
@@ -356,7 +356,7 @@ Return the statistics on the number of on-time flights filtered by the specified
 Get the statistics on the number of cancelled flights.
 ##### GET
 Return the statistics on the number of cancelled flights.
-### `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`
+### `/statistics/cancelled?{carrier_code}&{airport_code}&{month}`
 Get the statistics on the number of cancelled flights where the carrier, the airport, and the month may be specified.
 ##### GET
 Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
@@ -366,12 +366,12 @@ Return the statistics on the number of cancelled flights filtered by the specifi
 Get the statistics on the minutes delayed.
 ##### GET
 Return the statistics on the number of minutes delayed.
-### `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`
-Get the statistics on the minutes delayed filtered by `<carrier_code>`, `<airport_code>`, `<month>`, and `<reason>`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
+### `/statistics/minutes_delayed?{carrier_code}&{airport_code}&{month}&{reason}`
+Get the statistics on the minutes delayed filtered by `{carrier_code}`, `{airport_code}`, `{month}`, and `{reason}`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ##### GET
 Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
 
-## <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u></code>
+## <code>/statistics/connection?<i><u>{airport_1_code}&{airport_2_code}</i></u></code>
 *NOTE* the name of this endpoint is under evaluation.
 
 Represents the descriptive statistics (mean, median, standard deviation, etc...) of the averages between 2 airports. The query parameters for the two airports are required. What precise statistics have not been specified in the provided specification, so this route will return these averages and the descriptive statistics for all the `statistics` contained in the dataset.
@@ -379,7 +379,7 @@ Represents the descriptive statistics (mean, median, standard deviation, etc...)
 ##### GET
 Return the descriptive statistics between the two provided airports.
 
-### <code>/statistics/connection?<i><u><airport_1_code>&<airport_2_code></i></u>&<carrier></code>
+### <code>/statistics/connection?<i><u>{airport_1_code}&{airport_2_code}</i></u>&{carrier}</code>
 *NOTE* the name of this endpoint is under evaluation.
 
 Allows for retrieval of the descriptive statistics filtered by a carrier.
@@ -394,20 +394,20 @@ The following table summarizes the routes that are to be created. Mandantory que
 |----------------------------------------------------------------------------------------|--------------------------|
 | `/airports`                                                                            | GET                      |
 | `/carriers`                                                                            | GET                      |
-| `/carriers?<airport_code>`                                                             | GET                      |
+| `/carriers?{airport_code}`                                                             | GET                      |
 | `/statistics`                                                                          | GET, POST                |
-| `/statistics?<carrier_code>&<airport_code>&<month>`                                    | GET                      |
-| <code>/statistics?<b><carrier_code>&<airport_code>&\<month>&\<year></b></code>         | GET, PUT, PATCH , DELETE |
+| `/statistics?{carrier_code}&{airport_code}&{month}`                                    | GET                      |
+| <code>/statistics?<b>{carrier_code}&{airport_code}&\{month}&\{year}</b></code>         | GET, PUT, PATCH , DELETE |
 | `/statistics/on-time`                                                                  | GET                      |
-| `/statistics/on-time?<carrier_code>&<airport_code>&<month>`                            | GET                      |
+| `/statistics/on-time?{carrier_code}&{airport_code}&{month}`                            | GET                      |
 | `/statistics/delayed`                                                                  | GET                      |
-| `/statistics/delayed?<carrier_code>&<airport_code>&<month>`                            | GET                      |
+| `/statistics/delayed?{carrier_code}&{airport_code}&{month}`                            | GET                      |
 | `/statistics/cancelled`                                                                | GET                      |
-| `/statistics/cancelled?<carrier_code>&<airport_code>&<month>`                          | GET                      |
+| `/statistics/cancelled?{carrier_code}&{airport_code}&{month}`                          | GET                      |
 | `/statistics/minutes_delayed`                                                          | GET                      |
-| `/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>`           | GET                      |
-| <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b></code>           | GET                      |
-| <code>/statistics/connection?<b><airport_1_code>&<airport_2_code></b>&<carrier></code> | GET                      |
+| `/statistics/minutes_delayed?{carrier_code}&{airport_code}&{month}&{reason}`           | GET                      |
+| <code>/statistics/connection?<b>{airport_1_code}&{airport_2_code}</b></code>           | GET                      |
+| <code>/statistics/connection?<b>{airport_1_code}&{airport_2_code}</b>&{carrier}</code> | GET                      |
 
 # Appendix
 ## JSON Example Data
