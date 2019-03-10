@@ -14,7 +14,7 @@ Group 21
   - [[#json-example-data][JSON Example Data]]
 
 ** Introduction
-   The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [[https://think.cs.vt.edu/corgis/json/airlines/airlines.html][CORGIS Airlines Dataset]]. The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material.
+   The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [[https://think.cs.vt.edu/corgis/json/airlines/airlines.html][CORGIS Airlines Dataset]]. The requirements of the API are detailed in the [[./specification.pdf][specification]] that was provided as part of the Web Engineering course material.
 
    It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change.
 
