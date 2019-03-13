@@ -6,11 +6,18 @@ This document serves to define the Architecture of the Corgi Flight Statistics w
 - [ ] Provide a high-level architecture of the Web app
     - [ ] including the technologies tobe used and their justification.
 - [ ] Identify one or more value-added features to be offered through the Web app(optional).
+    - [ ] Graphical representation
+    - [ ] User reported delays?
 - [ ] The use of a database for persistence is optional but recommended.
     - [ ] We design with the intention of keeping the levels of effort to implement a database being only that of implementing the database itself.
 - [ ] Include diagrams
+- [ ] Add json/csv output for EVERYthing in docs
+- [ ] Add csv representation in code
+- [x] Add HAL for HATEOAS solution
+    - [ ] FUlly available
 
 # High Level Architecture
+![Architecture Diagram][Corgis Flight Statistics Diagram.svg]
 ## Client Server Architecture
 Clients fetch data from the server. Server can be split to handle scaling in future, predicated on having abstract data access layer.
 
