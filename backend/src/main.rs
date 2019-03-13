@@ -6,14 +6,19 @@ use rustic_hal::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 
+/// Gets airports from ```DataStore``` and wrap in ```HAL```
+/// The `HAL` resource provides links to each airport in the collection
+/// Returns the JSON of the HAL of Airports
 #[get("/airports")]
 fn get_airports(data_store: State<DataStore>) -> Json<Vec<HalResource>> {
+    // Take the records from DataStore, and store the airports in a hash set
     let airports: HashSet<_> = data_store
         .records
         .iter()
         .map(|record| record.airport.clone())
         .collect();
 
+    // Airports is now wrapped in the HAL with links
     let airports = airports
         .iter()
         .map(|airport| {
@@ -25,6 +30,21 @@ fn get_airports(data_store: State<DataStore>) -> Json<Vec<HalResource>> {
         .collect();
 
     Json(airports)
+}
+
+#[get("/airports/<airport_code>")]
+fn get_airport(airport_code: String, data_store: State<DataStore>) -> Json<HalResource> {
+    let record = data_store
+        .records
+        .iter()
+        .find(|record| record.airport.code == airport_code)
+        .expect("404 - TODO: Replace with re-direct");
+
+    let airport = record.airport.clone();
+
+    let hal = HalResource::new(airport).with_link("self", format!("/airports/{}", airport_code));
+
+    Json(hal)
 }
 
 #[get("/carriers?<airport_code>")]
@@ -224,6 +244,7 @@ fn rocket() -> rocket::Rocket {
             "/",
             routes!(
                 get_airports,
+                get_airport,
                 get_carriers,
                 get_statistics,
                 get_on_time_statistics,

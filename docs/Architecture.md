@@ -1,8 +1,7 @@
 # Architecture Design
-This document serves to define the Architecture of the Corgi Flight Statistics webapp.
-##### Version 0.0.1
-## Milestone Checklist
-
+This document serves to define the Architecture of the Corgi Flight Statistics Web Application.
+# Version 0.0.1
+## Milestone Checklist 
 - [ ] Provide a high-level architecture of the Web app
     - [ ] including the technologies tobe used and their justification.
 - [ ] Identify one or more value-added features to be offered through the Web app(optional).
