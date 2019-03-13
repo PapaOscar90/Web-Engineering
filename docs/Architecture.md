@@ -19,12 +19,20 @@ View, rendering of data in charts etc, sorting, occur (mostly) in client. Can op
 
 # Technology Selection
 TODO: Insert DIAGRAM HERE
-## Rocket (Rust)
+
+## Backend
+We are using Rust for our backend. This language strives for the trifecta of concurrency, speed, and saftey. 
+### Rocket (Rust)
 Type saftey, speed, familiarity in team, General Saftey, Security
 
-## ReasonML (OCAML)
+### rustic_hal
+
+
+## Frontend
+
+### ReasonML (OCAML)
 Solves JS problem (AKA, don't use it). We do not like JS.
 
-## React (ReasonReact)
+### React (ReasonReact)
 Functional Reactive Programming. Messages, state, model, reactions.
 
