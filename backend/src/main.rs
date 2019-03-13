@@ -2,15 +2,28 @@
 use corgis::airlines::*;
 use rocket::{get, routes, State};
 use rocket_contrib::json::Json;
+use rustic_hal::*;
+use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 
 #[get("/airports")]
-fn get_airports(data_store: State<DataStore>) -> Json<HashSet<Airport>> {
+fn get_airports(data_store: State<DataStore>) -> Json<Vec<HalResource>> {
     let airports: HashSet<_> = data_store
         .records
         .iter()
         .map(|record| record.airport.clone())
         .collect();
+
+    let airports = airports
+        .iter()
+        .map(|airport| {
+            let code = airport.code.clone();
+            HalResource::new(airport)
+                .with_link("self", format!("/airports/{}", code))
+                .with_link("statistics", format!("/statistics?airport_code={}", code))
+        })
+        .collect();
+
     Json(airports)
 }
 
