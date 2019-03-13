@@ -18,7 +18,9 @@ fn get_airports(data_store: State<DataStore>) -> Json<Vec<HalResource>> {
         .iter()
         .map(|airport| {
             let code = airport.code.clone();
-            HalResource::new(airport).with_link("self", format!("/airports/{}", code))
+            HalResource::new(airport)
+                .with_link("self", format!("/airports/{}", code))
+                .with_link("statistics", format!("/statistics?airport_code={}", code))
         })
         .collect();
 
