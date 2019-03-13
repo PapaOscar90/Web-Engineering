@@ -17,7 +17,7 @@ This document serves to define the Architecture of the Corgi Flight Statistics w
     - [ ] FUlly available
 
 # High Level Architecture
-![Architecture Diagram][Corgis Flight Statistics Diagram.svg]
+![Architecture Diagram](Corgis Flight Statistics Diagram.svg)
 ## Client Server Architecture
 Clients fetch data from the server. Server can be split to handle scaling in future, predicated on having abstract data access layer.
 
