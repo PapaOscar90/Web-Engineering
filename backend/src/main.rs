@@ -32,6 +32,9 @@ fn get_airports(data_store: State<DataStore>) -> Json<Vec<HalResource>> {
     Json(airports)
 }
 
+/// Gets an airport from the 'DataStore' and wraps it in a 'HAL'
+/// The 'HAL' resource provides the links available for the airport
+/// Returns the JSON of the HAL of the airport
 #[get("/airports/<airport_code>")]
 fn get_airport(airport_code: String, data_store: State<DataStore>) -> Json<HalResource> {
     let record = data_store
@@ -47,6 +50,10 @@ fn get_airport(airport_code: String, data_store: State<DataStore>) -> Json<HalRe
     Json(hal)
 }
 
+/// Gets carriers from the 'DataStore' and wraps it/them in a 'HAL'
+/// The carriers has optional filter <airport_code> to specify a single airport
+/// The 'HAL' resource provides the links available for the carrier(s)
+/// Returns the JSON of the HAL of the carrier(s)
 #[get("/carriers?<airport_code>")]
 fn get_carriers(
     airport_code: Option<String>,
@@ -65,6 +72,12 @@ fn get_carriers(
     Json(carriers)
 }
 
+/// Gets a statistic(s) from the 'DataStore' and wraps it/them in a 'HAL'
+/// Optional <carrier_code> to filter based on carrier
+/// Optional <airport_code> to filter based on airport
+/// Optional <month> to filter based on month
+/// The 'HAL' resource provides the links available
+/// Returns the JSON of the HAL of the statistic(s)
 #[get("/statistics?<carrier_code>&<airport_code>&<month>")]
 fn get_statistics(
     carrier_code: Option<String>,
@@ -90,6 +103,12 @@ fn get_statistics(
     )
 }
 
+/// Gets the on_time statistic from the 'DataStore' and wraps it in a 'HAL'
+/// Optional <carrier_code> to filter based on carrier
+/// Optional <airport_code> to filter based on airport
+/// Optional <month> to filter based on month
+/// The 'HAL' resource provides the links available for the statistic
+/// Returns the JSON of the HAL of the statistic
 #[get("/statistics/on_time?<carrier_code>&<airport_code>&<month>")]
 fn get_on_time_statistics(
     carrier_code: Option<String>,
@@ -121,6 +140,12 @@ fn get_on_time_statistics(
     )
 }
 
+/// Gets the delayed statistic from the 'DataStore' and wraps it in a 'HAL'
+/// Optional <carrier_code> to filter based on carrier
+/// Optional <airport_code> to filter based on airport
+/// Optional <month> to filter based on month
+/// The 'HAL' resource provides the links available for the statistic
+/// Returns the JSON of the HAL of the statistic
 #[get("/statistics/delayed?<carrier_code>&<airport_code>&<month>")]
 fn get_delayed_statistics(
     carrier_code: Option<String>,
@@ -152,6 +177,12 @@ fn get_delayed_statistics(
     )
 }
 
+/// Gets the cancelled statistic from the 'DataStore' and wraps it in a 'HAL'
+/// Optional <carrier_code> to filter based on carrier
+/// Optional <airport_code> to filter based on airport
+/// Optional <month> to filter based on month
+/// The 'HAL' resource provides the links available for the statistic
+/// Returns the JSON of the HAL of the statistic
 #[get("/statistics/cancelled?<carrier_code>&<airport_code>&<month>")]
 fn get_cancelled_statistics(
     carrier_code: Option<String>,
@@ -183,6 +214,12 @@ fn get_cancelled_statistics(
     )
 }
 
+/// Gets the minutes_delayed statistic from the 'DataStore' and wraps it in a 'HAL'
+/// Optional <carrier_code> to filter based on carrier
+/// Optional <airport_code> to filter based on airport
+/// Optional <month> to filter based on month
+/// The 'HAL' resource provides the links available for the statistic
+/// Returns the JSON of the HAL of the statistic
 #[get("/statistics/minutes_delayed?<carrier_code>&<airport_code>&<month>&<reason>")]
 fn get_minutes_delayed_statistics(
     carrier_code: Option<String>,
@@ -229,6 +266,7 @@ fn get_minutes_delayed_statistics(
     )
 }
 
+/// TODO: Implement me
 #[get("/statistics/connection?<airport_1_code>&<airport_2_code>&<carrier_code>")]
 fn get_connection_statistics(
     airport_1_code: String,
@@ -238,6 +276,8 @@ fn get_connection_statistics(
     unimplemented!();
 }
 
+/// Mount each endpoint to root
+/// Start the DataStore manager
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
         .mount(
@@ -257,6 +297,7 @@ fn rocket() -> rocket::Rocket {
         .manage(DataStore::new())
 }
 
+/// Rocket launch in T-10...
 fn main() {
     rocket().launch();
 }
