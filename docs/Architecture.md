@@ -18,7 +18,11 @@ This document serves to define the Architecture of the Corgi Flight Statistics W
 # High Level Architecture
 ![Architecture Diagram](CorgiFlightStatistics.svg)
 ## Client Server Architecture
-Clients fetch data from the server. Server can be split to handle scaling in future, predicated on having abstract data access layer.
+TODO: This is just temporary idea dump:
+
+Clients fetch data from the server. More servers can be spun up to handle scaling in future, predicated on having abstract data access layer. Initially for development and for shortly after deployment, all data can be stored within memory. This allows for keeping costs down during initial development since there are no extra server costs. We expect a low amount of requests per second following release, with a slow ramp up. If the web app begins to show signs of exponential growth, the abtracted data access will be quickly switched over to a standard Postgres or SQL database. The time to implement this would by only that of setting up the database.
+
+The frontend will fetch data from the server, and manipulate it client side to render charts and graphs, as well as store smaller chunks of data in the cache for faster loading each time the user opens the site. Since some of the data rarely ever changes, and takes a relatively small amount of space, we can store the codes and name of the airlines and airports directly within the cache. Only when the user needs up-to-date statistics will they need to fetch information from the server again.
 
 ## Thick Client
 View, rendering of data in charts etc, sorting, occur (mostly) in client. Can optimize and refresh data that is out of date. Might smartly utilize caching to reduce fetching (check into this).
@@ -31,13 +35,31 @@ We are using Rust for our backend. This language strives for the trifecta of con
 ### Rocket (Rust)
 Type saftey, speed, familiarity in team, General Saftey, Security
 
-### rustic_hal
+We implement our web app backend in Rocket for Rust. Rocket delivers some key features that we wanted:
+#### Speed
+Rocket is *extremely* fast. Compared to Node.js (via Restify), Rust could handle approx. *10x* the number of requests per second. This means for us, that we can keep our customers happy with short waiting times, and keep costs minimal with fewer servers required to handle the traffic volume.
 
+#### Type Safe
+From request to response, the Rocket server will ensure at compilation that everything will work without hidden errors or unexpected results.
+
+#### API Request Gaurd
+We can ensure the security of our endpoints with gaurds that protect the handler from running unless certain conditions are met by the incoming request metadata. 
+
+#### Data Type
+We are able to serve different data types with less effort by wrapping them.
+
+#### It isn't JavaScript
+We don't like Javascript. We were familiar with Rust, so we chose the better of the two.
+
+
+### rustic_hal
+This is a library that we include to manage our HATEOAS reponse body. It manages the links and references of our objects and will automatically output a formatted json for a request.
 
 ## Frontend
 
 ### ReasonML (OCAML)
 Solves JS problem (AKA, don't use it). We do not like JS.
+As with out backend, we wanted to find a frontend framework that is not JavaScript. So we set out and found ReasonML. This is an OCAML framework.
 
 ### React (ReasonReact)
 Functional Reactive Programming. Messages, state, model, reactions.
