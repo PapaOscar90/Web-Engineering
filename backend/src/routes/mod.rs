@@ -16,7 +16,7 @@ fn json_route(data_store: State<DataStore>) -> Json<Vec<Airport>> {
 #[get("/airports", format = "text/csv", rank = 2)]
 fn csv_route(data_store: State<DataStore>) -> Csv<Vec<Airport>> {
     fn convertor(airports: &Vec<Airport>) -> String {
-        let mut wtr = csv::Writer::from_writer(vec![]);
+        let mut wtr = csv::Writer::from_writer(Vec::new());
         for airport in airports {
             wtr.serialize(airport).unwrap();
         }
