@@ -540,6 +540,10 @@ dependencies = [
 [[package]]
 name = "rocket_contrib_local"
 version = "0.1.0"
+dependencies = [
+ "derive-new 0.5.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rocket 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "rocket_http"
