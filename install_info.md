@@ -19,7 +19,7 @@ Our frontend is powered by ReasonML and Reason-React. Check it out on their GitH
 - nvm install node
 - npm install --global yarn
   - // Make sure yarn is on your PATH
-- yarn global add bs-platform 
+- yarn global add bs-platform
 - npx create-react-app frontend --scripts-version reason-scripts
 - yarn start
   - // Now install your editor plugin (reasonml.github.io/docs/en/editor-plugins)
