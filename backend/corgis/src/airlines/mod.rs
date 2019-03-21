@@ -25,6 +25,7 @@ impl DataSet {
 
 /// An entry from the CORGIS Airlines dataset.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Record {
     airport: Airport,
     carrier: Carrier,
@@ -34,6 +35,7 @@ pub struct Record {
 
 /// An airport as represented in the CORGIS Airlines dataset.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Airport {
     code: String,
     name: String,
@@ -41,6 +43,7 @@ pub struct Airport {
 
 /// An airline carrier as represented in the CORGIS Airlines dataset.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Carrier {
     code: String,
     name: String,
@@ -49,6 +52,7 @@ pub struct Carrier {
 /// A set of statistics associated with an entry in the CORGIS Airlines dataset.
 /// A statistics is identified uniquely by an airport, carrier, and a time.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Statistics {
     flights: Flights,
     #[serde(rename = "minutes delayed")]
@@ -60,6 +64,7 @@ pub struct Statistics {
 /// The statistics providing details on the totals of the number of flights
 /// canceled, delayed, diverted, and on time.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Flights {
     cancelled: i32,
     delayed: i32,
@@ -71,6 +76,7 @@ pub struct Flights {
 
 /// The statistics of the minutes delayed due to a particular reason.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct MinutesDelayed {
     carrier: i32,
     #[serde(rename = "late aircraft")]
@@ -84,6 +90,7 @@ pub struct MinutesDelayed {
 
 /// The statistics of the number of delays due to a particular reason.
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct NumberOfDelays {
     carrier: i32,
     #[serde(rename = "late aircraft")]
@@ -97,6 +104,7 @@ pub struct NumberOfDelays {
 /// A time unit as provided in the Airlines dataset.
 // TODO replace this with the `chrono::NaiveDate` type?
 #[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[get = "pub"]
 pub struct Time {
     label: String,
     month: u32,
