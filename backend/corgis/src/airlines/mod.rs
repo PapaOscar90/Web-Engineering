@@ -5,6 +5,7 @@ mod tests;
 
 use derive_new::new;
 use getset::Getters;
+use indexmap::IndexSet;
 use serde::{Deserialize, Serialize};
 
 /// A collection of [records](Record) providing access to the CORGIS Airlines
@@ -20,6 +21,21 @@ impl DataSet {
     pub fn new() -> Self {
         let json_string = include_str!("airlines.json");
         serde_json::from_str(json_string).unwrap()
+    }
+
+    /// Return an iterator across the records of the data-set.
+    pub fn records(&self) -> std::slice::Iter<Record> {
+        self.records.iter()
+    }
+
+    /// Return an iterator across the unique airports in the data-set.
+    pub fn airports(&self) -> AirportIter {
+        AirportIter::new(self)
+    }
+
+    /// Return an iterator across the unique carriers in the data-set.
+    pub fn carriers(&self) -> CarrierIter {
+        CarrierIter::new(self)
     }
 }
 
@@ -109,4 +125,62 @@ pub struct Time {
     label: String,
     month: u32,
     year: u32,
+}
+
+/// An iterator across the airports in a data-set.
+pub struct AirportIter {
+    airports: IndexSet<Airport>,
+    idx: usize,
+}
+
+impl AirportIter {
+    /// Create an AirportIter containing a de-duplicated of airports from the data-set.
+    fn new(data_set: &DataSet) -> Self
+where {
+        let airports: IndexSet<_> = data_set
+            .records
+            .iter()
+            .map(|record| record.airport.clone())
+            .collect();
+        Self { airports, idx: 0 }
+    }
+}
+
+impl Iterator for AirportIter {
+    type Item = Airport;
+
+    fn next(&mut self) -> Option<Airport> {
+        let airport = self.airports.get_index(self.idx).cloned();
+        self.idx += 1;
+        airport
+    }
+}
+
+/// An iterator across the carriers in a data-set.
+pub struct CarrierIter {
+    carriers: IndexSet<Carrier>,
+    idx: usize,
+}
+
+impl CarrierIter {
+    /// Create a CarrierIter containing a de-duplicated vector of carriers from the data-set.
+    fn new(data_set: &DataSet) -> Self
+where {
+        let carriers: IndexSet<Carrier> = data_set
+            .records
+            .iter()
+            .map(|record| record.carrier.clone())
+            .collect();
+        Self { carriers, idx: 0 }
+    }
+}
+
+impl Iterator for CarrierIter {
+    type Item = Carrier;
+
+    fn next(&mut self) -> Option<Carrier> {
+        let carrier = self.carriers.get_index(self.idx).cloned();
+        self.idx += 1;
+        carrier
+    }
 }
