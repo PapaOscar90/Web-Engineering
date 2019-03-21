@@ -84,3 +84,15 @@ Accept: application/json
 ## Get CSV carriers at NONEXISTANT airport
 GET http://localhost:8000/carriers?airport=NONEXISTANT
 Accept: text/csv
+
+# Statistics
+## GET default statistics
+GET http://localhost:8000/statistics
+
+## Get JSON statistics
+GET http://localhost:8000/statistics
+Accept: application/json
+
+## Get CSV statistics
+GET http://localhost:8000/statistics
+Accept: text/csv

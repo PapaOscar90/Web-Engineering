@@ -2,6 +2,7 @@
 
 mod airports;
 mod carriers;
+mod statistics;
 
 use rocket::routes;
 use rocket::Rocket;
@@ -32,6 +33,14 @@ pub fn mount(rocket: Rocket) -> Rocket {
                 carriers::get_carrier_json,
                 carriers::get_carrier_csv,
                 carriers::get_carrier_default,
+            ),
+        )
+        .mount(
+            "/statistics",
+            routes!(
+                statistics::get_statistics_json,
+                statistics::get_statistics_csv,
+                statistics::get_statistics_default,
             ),
         )
 }
