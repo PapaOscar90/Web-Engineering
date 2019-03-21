@@ -6,6 +6,7 @@ version = "0.1.0"
 dependencies = [
  "corgis 0.2.0",
  "csv 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "indexmap 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket_contrib 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket_contrib_local 0.1.0",

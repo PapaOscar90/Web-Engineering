@@ -6,17 +6,18 @@
 //! This is a binary project that provides access to the [CORGIS Airlines data-set](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). It uses [rocket](https://rocket.rs) to launch a web-server, with routes implementation the required features. It uses the `corgis` sub-crate to get initial access to the airlines data-set.
 
 use corgis::airlines;
+use std::sync::Mutex;
 
 pub mod routes;
 
 /// Alias of the data store that will be managed by Rocket.
-type DataStore = airlines::DataSet;
+type DataStore = Mutex<airlines::DataSet>;
 
 /// Prepare the rocket web-server for launch:
 ///    1. Mount each end-point to the root.
 ///    2. Add managed state containing the data-set.
 pub fn rocket() -> rocket::Rocket {
-    routes::mount(rocket::ignite()).manage(DataStore::new())
+    routes::mount(rocket::ignite()).manage(DataStore::default())
 }
 
 /// Rocket launch in T-10...

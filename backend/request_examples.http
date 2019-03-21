@@ -67,3 +67,20 @@ Accept: application/json
 ## CSV request where carrier doesn't exist
 GET http://localhost:8000/carriers/NONEXISTANT
 Accept: text/csv
+
+#Carriers at a specific Airport
+## Get JSON carriers at Philadelphia International
+GET http://localhost:8000/carriers?airport=PHL
+Accept: application/json
+
+## Get CSV carriers at Philadelphia International
+GET http://localhost:8000/carriers?airport=PHL
+Accept: text/csv
+
+## Get JSON carriers at NONEXISTANT airport
+GET http://localhost:8000/carriers?airport=NONEXISTANT
+Accept: application/json
+
+## Get CSV carriers at NONEXISTANT airport
+GET http://localhost:8000/carriers?airport=NONEXISTANT
+Accept: text/csv
