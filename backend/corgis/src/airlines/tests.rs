@@ -170,8 +170,8 @@ fn test_data_store_from_object() {
     }
 ]"##;
 
-    let actual: DataStore = serde_json::from_str(data).unwrap();
-    let expected = DataStore {
+    let actual: DataSet = serde_json::from_str(data).unwrap();
+    let expected = DataSet {
         records: vec![
             Record {
                 airport: Airport {
@@ -257,10 +257,9 @@ fn test_data_store_from_object() {
     assert_eq!(expected, actual);
 }
 
-#[ignore]
 #[test]
 fn test_data_store_new() {
-    let data_store = DataStore::new();
+    let data_store = DataSet::new();
     let expected = 54013;
     let actual = data_store.records.len();
     assert_eq!(expected, actual);
