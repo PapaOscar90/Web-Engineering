@@ -1,0 +1,4 @@
+CREATE TABLE airports (
+  code CHAR(3) PRIMARY KEY NOT NULL,
+  name VARCHAR NOT NULL
+)
