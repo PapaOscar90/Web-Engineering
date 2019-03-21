@@ -18,7 +18,10 @@ pub fn get_carriers_json(data_store: State<DataStore>) -> Json<Vec<Carrier>> {
 #[get("/", format = "text/csv", rank = 5)]
 pub fn get_carriers_csv(data_store: State<DataStore>) -> Csv<Vec<Carrier>> {
     fn convertor(carriers: &Vec<Carrier>) -> String {
-        let mut wtr = csv::Writer::from_writer(Vec::new());
+        let mut wtr = csv::WriterBuilder::default()
+            .has_headers(false)
+            .from_writer(Vec::new());
+        wtr.write_record(&["code", "name"]).unwrap();
         for carrier in carriers {
             wtr.serialize(carrier).unwrap();
         }
@@ -65,7 +68,10 @@ pub fn get_carriers_operating_at_airport_csv(
         .cloned()
         .collect();
     fn convertor(carriers: &Vec<Carrier>) -> String {
-        let mut wtr = csv::Writer::from_writer(Vec::new());
+        let mut wtr = csv::WriterBuilder::default()
+            .has_headers(false)
+            .from_writer(Vec::new());
+        wtr.write_record(&["code", "name"]).unwrap();
         for carrier in carriers {
             wtr.serialize(carrier).unwrap();
         }
@@ -98,7 +104,10 @@ pub fn get_carrier_json(code: String, data_store: State<DataStore>) -> Option<Js
 #[get("/<code>", format = "text/csv", rank = 2)]
 pub fn get_carrier_csv(code: String, data_store: State<DataStore>) -> Option<Csv<Carrier>> {
     fn convertor(carrier: &Carrier) -> String {
-        let mut wtr = csv::Writer::from_writer(Vec::new());
+        let mut wtr = csv::WriterBuilder::default()
+            .has_headers(false)
+            .from_writer(Vec::new());
+        wtr.write_record(&["code", "name"]).unwrap();
         wtr.serialize(carrier).unwrap();
         String::from_utf8(wtr.into_inner().unwrap()).unwrap()
     };

@@ -17,7 +17,10 @@ pub fn get_airports_json(data_store: State<DataStore>) -> Json<Vec<Airport>> {
 #[get("/", format = "text/csv", rank = 2)]
 pub fn get_airports_csv(data_store: State<DataStore>) -> Csv<Vec<Airport>> {
     fn convertor(airports: &Vec<Airport>) -> String {
-        let mut wtr = csv::Writer::from_writer(Vec::new());
+        let mut wtr = csv::WriterBuilder::default()
+            .has_headers(false)
+            .from_writer(Vec::new());
+        wtr.write_record(&["code", "name"]).unwrap();
         for airport in airports {
             wtr.serialize(airport).unwrap();
         }
@@ -47,7 +50,10 @@ pub fn get_airport_json(code: String, data_store: State<DataStore>) -> Option<Js
 #[get("/<code>", format = "text/csv", rank = 2)]
 pub fn get_airport_csv(code: String, data_store: State<DataStore>) -> Option<Csv<Airport>> {
     fn convertor(airport: &Airport) -> String {
-        let mut wtr = csv::Writer::from_writer(Vec::new());
+        let mut wtr = csv::WriterBuilder::default()
+            .has_headers(false)
+            .from_writer(Vec::new());
+        wtr.write_record(&["code", "name"]).unwrap();
         wtr.serialize(airport).unwrap();
         String::from_utf8(wtr.into_inner().unwrap()).unwrap()
     };

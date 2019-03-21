@@ -18,7 +18,7 @@ pub fn get_statistics_json(data_store: State<DataStore>) -> Json<Vec<Record>> {
 #[get("/", format = "text/csv", rank = 2)]
 pub fn get_statistics_csv(data_store: State<DataStore>) -> Csv<Vec<Record>> {
     fn convertor(records: &Vec<Record>) -> String {
-        let mut wtr = csv::WriterBuilder::new()
+        let mut wtr = csv::WriterBuilder::default()
             .has_headers(false)
             .from_writer(Vec::new());
         wtr.write_record(&[
