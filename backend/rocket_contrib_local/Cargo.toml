@@ -1,0 +1,7 @@
+[package]
+name = "rocket_contrib_local"
+version = "0.1.0"
+authors = ["Troy Karan Harrison <NoxPardalis@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
