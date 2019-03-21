@@ -5,8 +5,10 @@ name = "backend"
 version = "0.1.0"
 dependencies = [
  "corgis 0.2.0",
+ "csv 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket_contrib 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rocket_contrib_local 0.1.0",
  "rustic_hal 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.39 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -87,6 +89,23 @@ dependencies = [
  "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_derive 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.39 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "csv"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "csv-core 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "csv-core"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "memchr 2.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -315,6 +334,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "memchr"
 version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "libc 0.2.50 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "mime"
@@ -514,6 +536,10 @@ dependencies = [
  "serde 1.0.89 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.39 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "rocket_contrib_local"
+version = "0.1.0"
 
 [[package]]
 name = "rocket_http"
@@ -765,6 +791,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum cfg-if 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "11d43355396e872eefb45ce6342e4374ed7bc2b3a502d1b28e36d6e23c05d1f4"
 "checksum chrono 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)" = "45912881121cb26fad7c38c17ba7daa18764771836b34fab7d3fbd93ed633878"
 "checksum cookie 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1465f8134efa296b4c19db34d909637cb2bf0f7aaf21299e23e18fa29ac557cf"
+"checksum csv 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)" = "9fd1c44c58078cfbeaf11fbb3eac9ae5534c23004ed770cc4bfb48e658ae4f04"
+"checksum csv-core 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "fa5cdef62f37e6ffe7d1f07a381bc0db32b7a3ff1cac0de56cb0d81e71f53d65"
 "checksum derive-new 0.5.6 (registry+https://github.com/rust-lang/crates.io-index)" = "6ca414e896ae072546f4d789f452daaecf60ddee4c9df5dc6d5936d769e3d87c"
 "checksum devise 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "74e04ba2d03c5fa0d954c061fc8c9c288badadffc272ebb87679a89846de3ed3"
 "checksum devise_codegen 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "066ceb7928ca93a9bedc6d0e612a8a0424048b0ab1f75971b203d01420c055d7"
