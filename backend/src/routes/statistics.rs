@@ -45,7 +45,8 @@ pub fn get_statistics_csv(data_store: State<DataStore>) -> Csv<Vec<Record>> {
             "Time.Label",
             "Time.Month",
             "Time.Year",
-        ]);
+        ])
+        .unwrap();
         for record in records {
             wtr.serialize(record).unwrap();
         }
