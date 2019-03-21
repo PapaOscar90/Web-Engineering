@@ -4,5 +4,14 @@ use airlines::DataSet;
 
 fn main() {
     let data_set = DataSet::new();
-    println!("{:#?}", data_set);
+
+    for airport in data_set.airports() {
+        println!("{:?}", airport);
+    }
+
+    for carrier in data_set.carriers() {
+        println!("{:?}", carrier);
+    }
+
+    println!("{}", data_set.records().count());
 }
