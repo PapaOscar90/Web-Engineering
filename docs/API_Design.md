@@ -113,34 +113,53 @@ Return all airports within the dataset.
 ###### Sample result (JSON)
 *NOTE* some results have been elided by `...`.
 ```json
-[
-    {
-        "code": "ATL",
-        "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+{
+    _links: {
+        self: {href: "{URL}/airports"},
+        item: [
+            { href: "{URL}/airports/ATL" },
+            { href: "{URL}/airports/BOS" },
+            { href: "{URL}/airports/BWI" },
+            ...,
+            { href: "{URL}/airports/PHL" },
+            { href: "{URL}/airports/PHX" },
+            { href: "{URL}/airports/BOS" }
+        ]
     },
-    {
-        "code": "BOS",
-        "name": "Boston, MA: Logan International"
-    },
-    {
-        "code": "BWI",
-        "name": "Baltimore, MD: Baltimore/Washington International Thurgood Marshall"
-    },
-    ...,
-    {
-        "code": "PHL",
-        "name": "Philadelphia, PA: Philadelphia International"
-    },
-    {
-        "code": "PHX",
-        "name": "Phoenix, AZ: Phoenix Sky Harbor International"
-    },
-    {
-        "code": "BOS",
-        "name": "Boston, MA: Logan International"
-    }
-]
-
+    data: [
+        {
+            code: "ATL",
+            name: "Atlanta, GA: Hartsfield-Jackson Atlanta International",
+            _links: { href: "{URL}/airports/ATL" }
+        },
+        {
+            code: "BOS",
+            name: "Boston, MA: Logan International",
+            _links: { href: "{URL}/airports/BOS" }
+        },
+        {
+            code: "BWI",
+            name: "Baltimore, MD: Baltimore/Washington International Thurgood Marshall",
+            _links: { href: "{URL}/airports/BWI" }
+        },
+        ...,
+        {
+            code: "PHL",
+            name: "Philadelphia, PA: Philadelphia International",
+            links: { href: "{URL}/airports/PHL" }
+        },
+        {
+            code: "PHX",
+            name: "Phoenix, AZ: Phoenix Sky Harbor International",
+            links: { href: "{URL}/airports/PHX" }
+        },
+        {
+            code: "BOS",
+            name: "Boston, MA: Logan International",
+            links: { href: "{URL}/airports/BOS" }
+        }
+    ]
+}
 ```
 
 ## `/carriers`
@@ -150,33 +169,53 @@ Return all carriers within the dataset.
 ###### Sample result (JSON)
 *NOTE* some results have been elided by `...`.
 ```json
-[
-    {
-        "code": "AA",
-        "name": "American Airlines Inc."
+{
+    _links: {
+        self: { href: "{URL}/carriers" },
+        item: [
+            { href: "{URL}/carriers/AA" },
+            { href: "{URL}/carriers/AS" },
+            { href: "{URL}/carriers/B6" },
+            ...,
+            { href: "{URL}/carriers/HA" },
+            { href: "{URL}/airports/VX" },
+            { href: "{URL}/airports/WN" }
+        ]
     },
-    {
-        "code": "AS",
-        "name": "Alaska Airlines Inc."
-    },
-    {
-        "code": "B6",
-        "name": "JetBlue Airways"
-    },
-    ...,
-    {
-        "code": "HA",
-        "name": "Hawaiian Airlines Inc."
-    },
-    {
-        "code": "VX",
-        "name": "Virgin America"
-    },
-    {
-        "code": "WN",
-        "name": "Southwest Airlines Co."
-    }
-]
+    data: [
+        {
+            code: "AA",
+            name: "American Airlines Inc.",
+            _links: { href: "{URL}/carriers/AA" }
+        },
+        {
+            code: "AS",
+            name: "Alaska Airlines Inc.",
+            _links: { href: "{URL}/carriers/AS" }
+        },
+        {
+            code: "B6",
+            name: "JetBlue Airways",
+            _links: { href: "{URL}/carriers/B6" }
+        },
+        ...,
+        {
+            code: "HA",
+            name: "Hawaiian Airlines Inc.",
+            _links: { href: "{URL}/carriers/HA" }
+        },
+        {
+            code: "VX",
+            name: "Virgin America",
+            _links: { href: "{URL}/airports/VX" }
+        },
+        {
+            code: "WN",
+            name: "Southwest Airlines Co.",
+            _links: { href: "{URL}/airports/WN" }
+        }
+    ]
+}
 ```
 
 ### `/carriers?{airport_code}`
@@ -185,33 +224,53 @@ This route supports retrieving all carriers in the dataset that operate at the a
 This will return all carriers operating at the airport denoted by `{airport_code}`
 ###### Sample result (JSON)
 ```json
-[
-    {
-        "code": "AA",
-        "name": "American Airlines Inc."
+{
+    _links: {
+        self: { href: "{URL}/carriers?airport_code=PHL" },
+        item: [
+            { href: "{URL}/carriers/AA" },
+            { href: "{URL}/carriers/AS" },
+            { href: "{URL}/carriers/CO" },
+            ...,
+            { href: "{URL}/carriers/UA" },
+            { href: "{URL}/airports/VX" },
+            { href: "{URL}/airports/WN" }
+        ]
     },
-    {
-        "code": "AS",
-        "name": "Alaska Airlines Inc."
-    },
-    {
-        "code": "CO",
-        "name": "Continental Air Lines Inc."
-    },
-    ...,
-    {
-        "code": "UA",
-        "name": "United Air Lines Inc."
-    },
-    {
-        "code": "VX",
-        "name": "Virgin America"
-    },
-    {
-        "code": "WN",
-        "name": "Southwest Airlines Co."
-    }
-]
+    data: [
+        {
+            code: "AA",
+            name: "American Airlines Inc.",
+            _links: { href: "{URL}/carriers/AA" }
+        },
+        {
+            code: "AS",
+            name: "Alaska Airlines Inc.",
+            _links: { href: "{URL}/carriers/AS" }
+        },
+        {
+            code: "CO",
+            name: "Continental Air Lines Inc.",
+            _links: { href: "{URL}/carriers/CO" }
+        },
+        ...,
+        {
+            code: "UA",
+            name: "United Air Lines Inc.",
+            _links: { href: "{URL}/carriers/UA" }
+        },
+        {
+            code: "VX",
+            name: "Virgin America",
+            _links: { href: "{URL}/airports/VX" }
+        },
+        {
+            code: "WN",
+            name: "Southwest Airlines Co.",
+            _links: { href: "{URL}/airports/WN" }
+        }
+    ]
+}
 ```
 
 ## `/statistics`
