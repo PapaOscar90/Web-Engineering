@@ -1,0 +1,69 @@
+# Default vs JSON vs CSV responses
+## GET with no format specified routes to the JSON route.
+GET http://localhost:8000/airports
+
+## GET with application/json specified routes to the JSON route.
+GET http://localhost:8000/airports
+Accept: application/json
+
+## GET with text/csv specified routes to the CSV route.
+GET http://localhost:8000/airports
+Accept: text/csv
+
+# Airports
+## GET default airports
+GET http://localhost:8000/airports
+
+## Get JSON airports
+GET http://localhost:8000/airports
+Accept: application/json
+
+## Get CSV airports
+GET http://localhost:8000/airports
+Accept: text/csv
+
+# Airport
+## JSON request where airport exists
+GET http://localhost:8000/airports/ATL
+Accept: application/json
+
+## CSV request where airport exists
+GET http://localhost:8000/airports/ATL
+Accept: text/csv
+
+## JSON request where airport doesn't exist
+GET http://localhost:8000/airports/NONEXISTANT
+Accept: application/json
+
+## CSV request where airport doesn't exist
+GET http://localhost:8000/airports/NONEXISTANT
+Accept: text/csv
+
+# Carriers
+## GET default carriers
+GET http://localhost:8000/carriers
+
+## Get JSON carriers
+GET http://localhost:8000/carriers
+Accept: application/json
+
+## Get CSV carriers
+GET http://localhost:8000/carriers
+Accept: text/csv
+
+# Carrier
+## JSON request where carrier exists
+GET http://localhost:8000/carriers/AA
+Accept: application/json
+
+## CSV request where carrier exists
+GET http://localhost:8000/carriers/AA
+Accept: text/csv
+
+## JSON request where carrier doesn't exist
+GET http://localhost:8000/carriers/NONEXISTANT
+Accept: application/json
+
+## CSV request where carrier doesn't exist
+GET http://localhost:8000/carriers/NONEXISTANT
+Accept: text/csv
