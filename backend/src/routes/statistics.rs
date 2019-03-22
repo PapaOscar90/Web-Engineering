@@ -211,7 +211,7 @@ pub fn get_statistics_flights_csv(
     )
 }
 
-/// Get the default representation of the on time flight statistics in the data store. This executed if the other routes are not matched.
+/// Get the default representation of the flights statistics in the data store. This executed if the other routes are not matched.
 #[get("/flights?<carrier>&<airport>&<month>", rank = 3)]
 pub fn get_statistics_flights_default(
     carrier: Option<String>,
