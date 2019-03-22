@@ -230,3 +230,38 @@ Accept: application/json
 ### CSV
 GET http://localhost:8000/statistics/flights?carrier=AA&month=1
 Accept: text/csv
+
+# Minutes delayed statistics
+## GET minutes delayed statistics
+### Default
+GET http://localhost:8000/statistics/minutes-delayed
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/minutes-delayed
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/minutes-delayed
+Accept: text/csv
+
+# Minutes delayed statistics filtration
+## GET minutes delayed statistics filtered by carrier, airport, and month
+### Default
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+Accept: text/csv
+
+## GET minutes delayed statistics filtered by carrier, airport, month, and reason
+### Default
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+Accept: text/csv
