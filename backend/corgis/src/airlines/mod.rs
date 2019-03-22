@@ -3,6 +3,7 @@
 #[cfg(test)]
 mod tests;
 
+use derive_more::*;
 use derive_new::new;
 use getset::Getters;
 use indexmap::IndexSet;
@@ -136,7 +137,23 @@ pub struct Flights {
 }
 
 /// The statistics of the minutes delayed due to a particular reason.
-#[derive(new, Getters, Clone, Debug, Deserialize, Serialize, PartialEq, Hash, Eq)]
+#[derive(
+    new,
+    Getters,
+    Clone,
+    Debug,
+    Deserialize,
+    Serialize,
+    PartialEq,
+    Hash,
+    Eq,
+    Add,
+    Mul,
+    Div,
+    Sub,
+    Ord,
+    PartialOrd,
+)]
 pub struct MinutesDelayed {
     /// Get a reference to the number of `MinutesDelayed` due to the `carrier`.
     #[get = "pub"]
@@ -163,6 +180,20 @@ pub struct MinutesDelayed {
     /// Get a reference to the number of `MinutesDelayed` due to `weather`.
     #[get = "pub"]
     weather: i32,
+}
+
+impl std::iter::Sum for MinutesDelayed {
+    fn sum<I: Iterator<Item = MinutesDelayed>>(iter: I) -> Self {
+        let zero = MinutesDelayed {
+            carrier: 0,
+            late_aircraft: 0,
+            national_aviation_system: 0,
+            security: 0,
+            total: 0,
+            weather: 0,
+        };
+        iter.fold(zero, std::ops::Add::add)
+    }
 }
 
 /// The statistics of the number of delays due to a particular reason.

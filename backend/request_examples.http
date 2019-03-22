@@ -265,3 +265,15 @@ Accept: application/json
 ### CSV
 GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
 Accept: text/csv
+
+# Connection statistics between 2 airports
+## GET connection statistics between 2 airports
+### Default
+GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+Accept: text/csv
