@@ -31,6 +31,11 @@ impl DataSet {
         Default::default()
     }
 
+    /// Insert a record into the dataset
+    pub fn add_record(&mut self, record: Record) {
+        self.records.push(record);
+    }
+
     /// Return an iterator across the records of the data-set.
     pub fn records(&self) -> std::slice::Iter<Record> {
         self.records.iter()

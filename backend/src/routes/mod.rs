@@ -41,6 +41,8 @@ pub fn mount(rocket: Rocket) -> Rocket {
                 statistics::get_statistics_json,
                 statistics::get_statistics_csv,
                 statistics::get_statistics_default,
+                statistics::post_statistics_json,
+                statistics::post_statistic_default,
                 statistics::get_statistics_flights_json,
                 statistics::get_statistics_flights_csv,
                 statistics::get_statistics_flights_default,

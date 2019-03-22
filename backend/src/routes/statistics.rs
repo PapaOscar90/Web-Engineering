@@ -3,9 +3,9 @@
 use crate::DataStore;
 use corgis::airlines::{Airport, Carrier, Flights, Record, Statistics, Time};
 use derive_more::*;
-use rocket::get;
 use rocket::response::status::NotFound;
 use rocket::State;
+use rocket::{get, post};
 use rocket_contrib::json::Json;
 use rocket_contrib_local::csv::Csv;
 use serde::Serialize;
@@ -36,6 +36,22 @@ pub fn get_statistics_json(
             .cloned()
             .collect(),
     )
+}
+
+/// Get the JSON representation of the record in the data store.
+#[post("/", format = "application/json", data = "<record>", rank = 1)]
+pub fn post_statistics_json(record: Json<Record>, data_store: State<DataStore>) -> Result<(), ()> {
+    data_store.lock().unwrap().add_record(record.into_inner());
+    Ok(())
+}
+
+/// Post a record to the data store. This is executed if the other routes are not matched.
+#[post("/", data = "<record>", rank = 3)]
+pub fn post_statistic_default(
+    record: Json<Record>,
+    data_store: State<DataStore>,
+) -> Result<(), ()> {
+    post_statistics_json(record, data_store)
 }
 
 /// Get the CSV representation of the record in the data store.
