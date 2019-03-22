@@ -14,7 +14,7 @@ let make = (~message, _children) => {
 
     // Return a div "App"
     <div className="App">
-      // Also containing a p with more text and different class (for style)
+      // Containing an icon with text and different class (for style)
       <img src=icon className="App-icon" alt="icon" />
       <p className="App-intro">
         (ReasonReact.string("Welcome to Corgi Flight Statistics"))

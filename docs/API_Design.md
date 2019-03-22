@@ -47,7 +47,6 @@ The dataset consists of an array of objects, each of which represent one record 
     "month": 6
 }
 ```
-
 For this intersection the record also specifies additional statistics.
 ```json
 "statistics": {
@@ -103,7 +102,46 @@ The specification that was provided details the minimum requires for the API.
 ## Endpoints
 The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
+Values included in `{}` are query parameters. For example `{airport}` is actually entered as `airport=<airport-code>` where '<airport-code>' is the three letter identifier of the airport.
+
 All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
+
+Responses in text/csv are differing in only their apearence. Since it would be a waste of time and space to copy paste the same data over and over again, we will provide the json output, and assume the reader can read json. If examples are needed, the user can use the emacs restclient on the file: [../backend/request_examples.http](request examples.http). This file automatically creates requests to the server and outputs within a buffer of emacs. Example responses for `JSON` and `text/csv` comparison:
+- an airport
+```json
+"airport": {
+    "code": "ATL",
+    "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+}
+```
+```text/csv
+code,name
+ATL,"Atlanta, GA: Hartsfield-Jackson Atlanta International"
+```
+- a carrier
+```json
+"carrier": {
+    "code": "AA",
+    "name": "American Airlines Inc."
+}
+```
+```text/csv
+code,name
+AA,"American Airlines Inc."
+```
+- a time
+```json
+"time": {
+    "label": "2003/6",
+    "year": 2003,
+    "month": 6
+}
+```
+```text/csv
+label,year,month
+2003/6,2003,6
+```
+Notice the order and data is exactly the same. So a user can easily read the csv by reading the data in the json, without any extra punctuation besides a comma seperating items, and newlines seperating objects.
 
 ---
 ## `/airports`
@@ -392,39 +430,80 @@ Delete the statistic specified by the `{carrier_code}`, `{airport_code}`, `{mont
 
 The server should respond with a 204 status code on success.
 
-## `/statistics/on-time`
+## `/statistics/flights`
 Get the statistics on the number of on-time flights.
 ##### GET
 Return the statistics on the number of on-time flights.
-### `/statistics/on-time?{carrier_code}&{airport_code}&{month}`
-Get the statistics on the number of on-time flights where the carrier, the airport, and the month may be specified.
-##### GET
-Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
-
-## `/statistics/delayed`
+###### Sample response (JSON)
+```json
+[
+  {
+    "airport": {
+      "code": "ATL",
+      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+    },
+    "carrier": {
+      "code": "AA",
+      "name": "American Airlines Inc."
+    },
+    "flights": {
+      "cancelled": 5,
+      "delayed": 186,
+      "diverted": 0,
+      "on time": 561,
+      "total": 752
+    },
+    "time": {
+      "label": "2003/6",
+      "month": 6,
+      "year": 2003
+    }
+  },
+  ...,
+  {
+    "airport": {
+      "code": "ATL",
+      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+    },
+    "carrier": {
+      "code": "AA",
+      "name": "American Airlines Inc."
+    },
+    "flights": {
+      "cancelled": 7,
+      "delayed": 210,
+      "diverted": 1,
+      "on time": 556,
+      "total": 774
+    },
+    "time": {
+      "label": "2003/7",
+      "month": 7,
+      "year": 2003
+    }
+  }
+]
+```
+## `/statistics/minutes-delayed`
 Get the statistics on the number of delayed flights.
 ##### GET
 Return the statistics on the number of delayed flights.
-### `/statistics/delayed?{carrier_code}&{airport_code}&{month}`
-Get the statistics on the number of delayed flights where the carrier, the airport, and the month may be specified.
-##### GET
-Return the statistics on the number of on-time flights filtered by the specified carrier, airport, and month if specified.
+###### Sample response (text/csv)
+Since the reponse is similar to the previous, we show the `text/csv` output here:
+```
+Airport.Code,Airport.Name,Carrier.Code,Carrier.Name,Minutes Delayed.Carrier,Minutes Delayed.Late Aircraft,Minutes Delayed.National Aviation System,Minutes Delayed.Security,Minutes Delayed.Total,Minutes Delayed.Weather,Time.Label,Time.Month,Time.Year
+ATL,"Atlanta, GA: Hartsfield-Jackson Atlanta International",AA,American Airlines Inc.,1367,1367,1367,1367,1367,1722,2003/6,6,2003
+BOS,"Boston, MA: Logan International",AA,American Airlines Inc.,4201,4201,4201,4201,4201,1783,2003/6,6,2003
+BWI,"Baltimore, MD: Baltimore/Washington International Thurgood Marshall",AA,American Airlines Inc.,1058,1058,1058,1058,1058,1332,2003/6,6,2003
+CLT,"Charlotte, NC: Charlotte Douglas International",AA,American Airlines Inc.,968,968,968,968,968,742,2003/6,6,2003
+DCA,"Washington, DC: Ronald Reagan Washington National",AA,American Airlines Inc.,2048,2048,2048,2048,2048,1484,2003/6,6,2003
+DEN,"Denver, CO: Denver International",AA,American Airlines Inc.,2098,2098,2098,2098,2098,1193,2003/6,6,2003
+DFW,"Dallas/Fort Worth, TX: Dallas/Fort Worth International",AA,American Airlines Inc.,31999,31999,31999,31999,31999,4787,2003/6,6,2003
+DTW,"Detroit, MI: Detroit Metro Wayne County",AA,American Airlines Inc.,1029,1029,1029,1029,1029,791,2003/6,6,2003
+...
+```
 
-## `/statistics/cancelled`
-Get the statistics on the number of cancelled flights.
-##### GET
-Return the statistics on the number of cancelled flights.
-### `/statistics/cancelled?{carrier_code}&{airport_code}&{month}`
-Get the statistics on the number of cancelled flights where the carrier, the airport, and the month may be specified.
-##### GET
-Return the statistics on the number of cancelled flights filtered by the specified carrier, airport, and month if specified.
-
-
-## `/statistics/minutes_delayed`
-Get the statistics on the minutes delayed.
-##### GET
-Return the statistics on the number of minutes delayed.
-### `/statistics/minutes_delayed?{carrier_code}&{airport_code}&{month}&{reason}`
+### `/statistics/minutes-delayed?{carrier_code}&{airport_code}&{month}&{reason}`
 Get the statistics on the minutes delayed filtered by `{carrier_code}`, `{airport_code}`, `{month}`, and `{reason}`. The reason corresponds with one of the following values: "late aircraft", "weather", "carrier", "security", "total", or "national aviation system". Multiple reason parameters may be passed to include more reasons. If the reason parameter is not set, the minutes delayed for all reasons are returned.
 ##### GET
 Return the statistics on the number of minutes delayed as filtered by the provided query parameters.
@@ -456,14 +535,10 @@ The following table summarizes the routes that are to be created. Mandatory quer
 | `/statistics`                                                                          | GET, POST                |
 | `/statistics?{carrier_code}&{airport_code}&{month}`                                    | GET                      |
 | <code>/statistics?<b>{carrier_code}&{airport_code}&\{month}&\{year}</b></code>         | GET, PUT, PATCH , DELETE |
-| `/statistics/on-time`                                                                  | GET                      |
-| `/statistics/on-time?{carrier_code}&{airport_code}&{month}`                            | GET                      |
-| `/statistics/delayed`                                                                  | GET                      |
-| `/statistics/delayed?{carrier_code}&{airport_code}&{month}`                            | GET                      |
-| `/statistics/cancelled`                                                                | GET                      |
-| `/statistics/cancelled?{carrier_code}&{airport_code}&{month}`                          | GET                      |
-| `/statistics/minutes_delayed`                                                          | GET                      |
-| `/statistics/minutes_delayed?{carrier_code}&{airport_code}&{month}&{reason}`           | GET                      |
+| `/statistics/flights`                                                                  | GET                      |
+| `/statistics/flights?{carrier_code}&{airport_code}&{month}`                            | GET                      |
+| `/statistics/minutes-delayed`                                                          | GET                      |
+| `/statistics/minutes-delayed?{carrier_code}&{airport_code}&{month}&{reason}`           | GET                      |
 | <code>/statistics/connection?<b>{airport_1_code}&{airport_2_code}</b></code>           | GET                      |
 | <code>/statistics/connection?<b>{airport_1_code}&{airport_2_code}</b>&{carrier}</code> | GET                      |
 
