@@ -18,8 +18,6 @@ This document serves to define the Architecture of the Corgi Flight Statistics W
 # High Level Architecture
 ![Architecture Diagram](CorgiFlightStatistics.svg)
 ## Client Server Architecture
-TODO: This is just temporary idea dump:
-
 Clients fetch data from the server. More servers can be spun up to handle scaling in future, predicated on having abstract data access layer. Initially for development and for shortly after deployment, all data can be stored within memory. This allows for keeping costs down during initial development since there are no extra server costs. We expect a low amount of requests per second following release, with a slow ramp up. If the web app begins to show signs of exponential growth, the abtracted data access will be quickly switched over to a standard Postgres or SQL database. The time to implement this would by only that of setting up the database itself.
 
 The frontend will fetch data from the server, and manipulate it client side to render charts and graphs, as well as store smaller chunks of data in the cache for faster loading each time the user opens the site. Since some of the data rarely ever changes, and takes a relatively small amount of space, we can store the codes and name of the airlines and airports directly within the cache. Only when the user needs up-to-date statistics will they need to fetch information from the server again.
@@ -31,8 +29,6 @@ View, rendering of data in charts etc, sorting, occur (mostly) in client. Can op
 Our front end will deliver the basic requirements, plus the ability to render statistics in graphical charts, as well as submit new reports for delays. These reports will contain information that will allow us to add the delay, but ensure that it is not entered more than once if multiple people report the same delay. As this would cause inflation that does not match the actual delay statistics.
 
 # Technology Selection
-TODO: Insert DIAGRAM HERE
-
 ## Backend
 We are using Rust for our backend. This language strives for the trifecta of concurrency, speed, and saftey. 
 ### Rocket (Rust)
