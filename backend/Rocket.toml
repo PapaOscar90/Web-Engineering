@@ -1,2 +1,0 @@
-[global.database]
-sqlite_logs = { url = "airlines.sqlite" }

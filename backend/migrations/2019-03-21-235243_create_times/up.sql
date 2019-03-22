@@ -1,3 +1,0 @@
-CREATE TABLE times (
-  date TEXT PRIMARY KEY NOT NULL
-)

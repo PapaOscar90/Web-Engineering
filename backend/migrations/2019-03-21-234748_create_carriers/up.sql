@@ -1,4 +1,0 @@
-CREATE TABLE carriers (
-  code CHAR(3) PRIMARY KEY NOT NULL,
-  name VARCHAR NOT NULL
-)
