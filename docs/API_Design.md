@@ -489,7 +489,7 @@ Get the statistics on the number of delayed flights.
 ##### GET
 Return the statistics on the number of delayed flights.
 ###### Sample response (text/csv)
-Since the reponse is similar to the previous, we show the `text/csv` outptu here:
+Since the reponse is similar to the previous, we show the `text/csv` output here:
 ```
 Airport.Code,Airport.Name,Carrier.Code,Carrier.Name,Minutes Delayed.Carrier,Minutes Delayed.Late Aircraft,Minutes Delayed.National Aviation System,Minutes Delayed.Security,Minutes Delayed.Total,Minutes Delayed.Weather,Time.Label,Time.Month,Time.Year
 ATL,"Atlanta, GA: Hartsfield-Jackson Atlanta International",AA,American Airlines Inc.,1367,1367,1367,1367,1367,1722,2003/6,6,2003
