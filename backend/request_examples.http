@@ -1,6 +1,7 @@
 # Default vs JSON vs CSV responses
-## GET with no format specified routes to the JSON route.
+## GET with none/non-supported format specified routes to the JSON route.
 GET http://localhost:8000/airports
+Accept: text/html
 
 ## GET with application/json specified routes to the JSON route.
 GET http://localhost:8000/airports
@@ -11,88 +12,221 @@ GET http://localhost:8000/airports
 Accept: text/csv
 
 # Airports
-## GET default airports
+## GET airports
+### Default
 GET http://localhost:8000/airports
-
-## Get JSON airports
+Accept: text/html
+### JSON
 GET http://localhost:8000/airports
 Accept: application/json
-
-## Get CSV airports
+### CSV
 GET http://localhost:8000/airports
 Accept: text/csv
 
 # Airport
-## JSON request where airport exists
+## GET airport which exists
+### Default
+GET http://localhost:8000/airports/ATL
+Accept: text/html
+### JSON
 GET http://localhost:8000/airports/ATL
 Accept: application/json
-
-## CSV request where airport exists
+### CSV
 GET http://localhost:8000/airports/ATL
 Accept: text/csv
 
-## JSON request where airport doesn't exist
+## Get airport which doesn't exist
+### Default
+GET http://localhost:8000/airports/NONEXISTANT
+Accept: text/html
+### JSON
 GET http://localhost:8000/airports/NONEXISTANT
 Accept: application/json
-
-## CSV request where airport doesn't exist
+### CSV
 GET http://localhost:8000/airports/NONEXISTANT
 Accept: text/csv
 
 # Carriers
-## GET default carriers
+## GET carriers
+### Default
 GET http://localhost:8000/carriers
-
-## Get JSON carriers
+Accept: text/html
+### JSON
 GET http://localhost:8000/carriers
 Accept: application/json
-
-## Get CSV carriers
+### CSV
 GET http://localhost:8000/carriers
 Accept: text/csv
 
 # Carrier
-## JSON request where carrier exists
+## Get carrier which exists
+### Default
+GET http://localhost:8000/carriers/AA
+Accept: text/html
+### JSON
 GET http://localhost:8000/carriers/AA
 Accept: application/json
-
-## CSV request where carrier exists
+### CSV
 GET http://localhost:8000/carriers/AA
 Accept: text/csv
 
-## JSON request where carrier doesn't exist
+## Get carrier which doesn't exist
+### JSON
+GET http://localhost:8000/carriers/NONEXISTANT
+Accept: text/html
+### JSON
 GET http://localhost:8000/carriers/NONEXISTANT
 Accept: application/json
-
-## CSV request where carrier doesn't exist
+### CSV
 GET http://localhost:8000/carriers/NONEXISTANT
 Accept: text/csv
 
-#Carriers at a specific Airport
-## Get JSON carriers at Philadelphia International
-GET http://localhost:8000/carriers?airport=PHL
+## GET carriers at an airport which doesn't exist
+### Default
+GET http://localhost:8000/carriers?airport=NONEXISTANT
+Accept: text/html
+### JSON
+GET http://localhost:8000/carriers?airport=NONEXISTANT
 Accept: application/json
-
-## Get CSV carriers at Philadelphia International
-GET http://localhost:8000/carriers?airport=PHL
+### CSV
+GET http://localhost:8000/carriers?airport=NONEXISTANT
 Accept: text/csv
 
-## Get JSON carriers at NONEXISTANT airport
-GET http://localhost:8000/carriers?airport=NONEXISTANT
+## GET carriers at a specific airport
+### Default
+GET http://localhost:8000/carriers?airport=PHL
+Accept: text/html
+### JSON
+GET http://localhost:8000/carriers?airport=PHL
 Accept: application/json
-
-## Get CSV carriers at NONEXISTANT airport
-GET http://localhost:8000/carriers?airport=NONEXISTANT
+### CSV
+GET http://localhost:8000/carriers?airport=PHL
 Accept: text/csv
 
 # Statistics
-## GET default statistics
+## GET statistics (WARNING LARGE RESULT)
+### Default
 GET http://localhost:8000/statistics
-
-## Get JSON statistics
+Accept: text/html
+### JSON
 GET http://localhost:8000/statistics
 Accept: application/json
-
-## Get CSV statistics
+## CSV
 GET http://localhost:8000/statistics
+Accept: text/csv
+
+## TODO POST statistics
+### Default
+### JSON
+### CSV
+
+# Statistics with filtration
+## GET statistics filtered by airport
+### Default
+GET http://localhost:8000/statistics?airport=ATL
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics?airport=ATL
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics?airport=ATL
+Accept: text/csv
+
+## GET statistics filtered by carrier
+### Default
+GET http://localhost:8000/statistics?carrier=AA
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics?airport=AA
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics?airport=AA
+Accept: text/csv
+
+## GET statistics filtered by month
+### Default
+GET http://localhost:8000/statistics?month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics?month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics?month=1
+Accept: text/csv
+
+## GET statistics filtered by carrier and month.
+### Default
+GET http://localhost:8000/statistics?carrier=AA&month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics?carrier=AA&month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics?carrier=AA&month=1
+Accept: text/csv
+
+## GET statistics filter by airport, carrier, and month
+### Default
+GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+Accept: text/csv
+
+## TODO PUT statistics
+### Default
+### JSON
+### CSV
+## TODO DELETE statistics
+### Default
+### JSON
+### CSV
+
+# Flight statistics (number of on-time, delayed, cancelled, diverted flights as well as the total flights)
+## GET flight statistics
+### Default
+GET http://localhost:8000/statistics/flights
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/flights
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/flights
+Accept: text/csv
+
+# Flights statistics with filtration
+## GET flights statistics filtered by carrier
+### Default
+GET http://localhost:8000/statistics/flights?carrier=AA
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/flights?carrier=AA
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/flights?carrier=AA
+Accept: text/csv
+
+## GET flights statistics filtered by month
+### Default
+GET http://localhost:8000/statistics/flights?month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/flights?month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/flights?month=1
+Accept: text/csv
+
+## GET flight statistics filtered by carrier and month
+### Default
+GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+Accept: application/json
+### CSV
+GET http://localhost:8000/statistics/flights?carrier=AA&month=1
 Accept: text/csv
