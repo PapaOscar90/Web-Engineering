@@ -117,8 +117,91 @@ Accept: text/csv
 
 ## TODO POST statistics
 ### Default
+POST http://localhost:8000/statistics
+Content-Type: text/html
+  {
+    "airport": {
+      "code": "ATL",
+      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+    },
+    "carrier": {
+      "code": "AA",
+      "name": "American Airlines Inc."
+    },
+    "statistics": {
+      "flights": {
+        "cancelled": 13,
+        "delayed": 242,
+        "diverted": 0,
+        "on time": 449,
+        "total": 704
+      },
+      "minutes delayed": {
+        "carrier": 2327,
+        "late aircraft": 4725,
+        "national aviation system": 5961,
+        "security": 0,
+        "total": 14470,
+        "weather": 1457
+      },
+      "# of delays": {
+        "carrier": 41,
+        "late aircraft": 62,
+        "national aviation system": 116,
+        "security": 0,
+        "weather": 24
+      }
+    },
+    "time": {
+      "label": "2018/1",
+      "month": 1,
+      "year": 2018
+    }
+  }
+
 ### JSON
-### CSV
+POST http://localhost:8000/statistics
+Content-Type: application/json
+  {
+    "airport": {
+      "code": "ATL",
+      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
+    },
+    "carrier": {
+      "code": "AA",
+      "name": "American Airlines Inc."
+    },
+    "statistics": {
+      "flights": {
+        "cancelled": 13,
+        "delayed": 242,
+        "diverted": 0,
+        "on time": 449,
+        "total": 704
+      },
+      "minutes delayed": {
+        "carrier": 2327,
+        "late aircraft": 4725,
+        "national aviation system": 5961,
+        "security": 0,
+        "total": 14470,
+        "weather": 1457
+      },
+      "# of delays": {
+        "carrier": 41,
+        "late aircraft": 62,
+        "national aviation system": 116,
+        "security": 0,
+        "weather": 24
+      }
+    },
+    "time": {
+      "label": "2018/1",
+      "month": 1,
+      "year": 2018
+    }
+  }
+
 
 # Statistics with filtration
 ## GET statistics filtered by airport
