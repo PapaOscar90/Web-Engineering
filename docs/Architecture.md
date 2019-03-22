@@ -4,9 +4,9 @@ This document serves to define the Architecture of the Corgi Flight Statistics W
 ## Milestone Checklist 
 - [ ] Provide a high-level architecture of the Web app
     - [ ] including the technologies tobe used and their justification.
-- [ ] Identify one or more value-added features to be offered through the Web app(optional).
-    - [ ] Graphical representation
-    - [ ] User reported delays?
+- [x] Identify one or more value-added features to be offered through the Web app(optional).
+    - [x] Graphical representation
+    - [x] User reported delays?
 - [ ] The use of a database for persistence is optional but recommended.
     - [ ] We design with the intention of keeping the levels of effort to implement a database being only that of implementing the database itself.
 - [ ] Include diagrams
@@ -27,6 +27,9 @@ The frontend will fetch data from the server, and manipulate it client side to r
 ## Thick Client
 View, rendering of data in charts etc, sorting, occur (mostly) in client. Can optimize and refresh data that is out of date. Might smartly utilize caching to reduce fetching (check into this).
 
+#Features
+Our front end will deliver the basic requirements, plus the ability to render statistics in graphical charts, as well as submit new reports for delays. These reports will contain information that will allow us to add the delay, but ensure that it is not entered more than once if multiple people report the same delay. As this would cause inflation that does not match the actual delay statistics.
+
 # Technology Selection
 TODO: Insert DIAGRAM HERE
 
@@ -36,19 +39,19 @@ We are using Rust for our backend. This language strives for the trifecta of con
 Type saftey, speed, familiarity in team, General Saftey, Security
 
 We implement our web app backend in Rocket for Rust. Rocket delivers some key features that we wanted:
-#### Speed
+##### Speed
 Rocket is *extremely* fast. Compared to Node.js (via Restify), Rust could handle approx. *10x* the number of requests per second. This means for us, that we can keep our customers happy with short waiting times, and keep costs minimal with fewer servers required to handle the traffic volume.
 
-#### Type Safe
+##### Type Safe
 From request to response, the Rocket server will ensure at compilation that everything will work without hidden errors or unexpected results.
 
-#### API Request Gaurd
+##### API Request Gaurd
 We can ensure the security of our endpoints with gaurds that protect the handler from running unless certain conditions are met by the incoming request metadata. 
 
-#### Data Type
+##### Data Type
 We are able to serve different data types with less effort by wrapping them.
 
-#### It isn't JavaScript
+##### It isn't JavaScript
 We don't like Javascript. We were familiar with Rust, so we chose the better of the two.
 
 
