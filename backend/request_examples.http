@@ -33,16 +33,16 @@ Accept: text/csv
 # Airport
 ## GET airport which exists
 ### Default
-GET http://localhost:8000/airports/437966784964067329
+GET http://localhost:8000/airports/438123234872131585
 Accept: text/html
 ### JSON
-GET http://localhost:8000/airports/437966784964067329
+GET http://localhost:8000/airports/438123234872131585
 Accept: application/json
 ### HAL+JSON
-GET http://localhost:8000/airports/437966784964067329
+GET http://localhost:8000/airports/438123234872131585
 Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/airports/437966784964067329
+GET http://localhost:8000/airports/438123234872131585
 Accept: text/csv
 
 ## Get airport which doesn't exist
@@ -77,16 +77,16 @@ Accept: text/csv
 # Carrier
 ## Get carrier which exists
 ### Default
-GET http://localhost:8000/carriers/437966784628097025
+GET http://localhost:8000/carriers/438123234512240641
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers/437966784628097025
+GET http://localhost:8000/carriers/438123234512240641
 Accept: application/json
 ### HAL+JSON
-GET http://localhost:8000/carriers/437966784628097025
+GET http://localhost:8000/carriers/438123234512240641
 Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers/437966784628097025
+GET http://localhost:8000/carriers/438123234512240641
 Accept: text/csv
 
 ## Get carrier which doesn't exist
@@ -119,16 +119,16 @@ Accept: text/csv
 
 ## GET carriers at a specific airport
 ### Default
-GET http://localhost:8000/carriers?airport=437966784964067329
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers?airport=437966784964067329
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: application/json
 ### HAL+JSON
-GET http://localhost:8000/carriers?airport=437966784964067329
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers?airport=437966784964067329
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: text/csv
 
 # Statistics
@@ -223,24 +223,24 @@ flights_cancelled,flights_delayed,flights_diverted,flights_on_time,minutes_delay
 # Statistics with filtration
 ## GET statistics filtered by airport
 ### Default
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: text/csv
 
 ## GET statistics filtered by carrier
 ### Default
-GET http://localhost:8000/statistics?carrier=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?carrier=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?carrier=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: text/csv
 
 ## GET statistics filtered by month
@@ -256,24 +256,24 @@ Accept: text/csv
 
 ## GET statistics filtered by carrier and month.
 ### Default
-GET http://localhost:8000/statistics?carrier=AA&month=6
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?carrier=AA&month=6
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?carrier=AA&month=6
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: text/csv
 
 ## GET statistics filter by airport, carrier, and month
 ### Default
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=6
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=6
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=6
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
 Accept: text/csv
 
 # Statistic
@@ -362,13 +362,13 @@ Accept: text/csv
 # Flights statistics with filtration
 ## GET flights statistics filtered by carrier
 ### Default
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: text/csv
 
 ## GET flights statistics filtered by month
@@ -384,13 +384,13 @@ Accept: text/csv
 
 ## GET flight statistics filtered by carrier and month
 ### Default
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: text/csv
 
 # Minutes delayed statistics
@@ -408,34 +408,34 @@ Accept: text/csv
 # Minutes delayed statistics filtration
 ## GET minutes delayed statistics filtered by carrier, airport, and month
 ### Default
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: text/csv
 
 ## GET minutes delayed statistics filtered by carrier, airport, month, and reason
 ### Default
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: text/csv
 
 # Connection statistics between 2 airports
 ## GET connection statistics between 2 airports
 ### Default
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: text/csv
