@@ -94,8 +94,9 @@ Functional Reactive Programming. Messages, state, model, reactions. It also serv
 
 ## MaterialUI
 ---
-### Recharts
+Generates a nice UI for us.
+
+## Recharts
+---
 Recharts is a library that allows us to display statistical data in a clean, beautiful way. It is fully featured, and can plug and play.
 
-### RemoteData
-RemoteData helps us fetch remote data from our backend for us on the front end. Keeping things type safe.
