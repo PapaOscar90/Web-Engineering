@@ -149,6 +149,7 @@ This route supports retrieving all airports in the dataset.
 Return all airports within the dataset.
 ###### Sample result (JSON)
 *NOTE* some results have been elided by `...`.
+
 ```json
 {
     _links: {
