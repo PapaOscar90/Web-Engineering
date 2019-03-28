@@ -165,9 +165,9 @@ Content-Type: text/html
     "number_of_delays_national_aviation_system": 13,
     "number_of_delays_security": 3,
     "number_of_delays_weather": 0,
-    "time": "2003-06-01",
-    "carrier_id": 437966784679247873,
-    "airport_id": 437966785074823169
+    "time": "2019-12-01",
+    "carrier_id": 438123234627452929,
+    "airport_id": 438123235093938177
   }
 
 ### JSON
@@ -214,7 +214,7 @@ Content-Type: application/hal+json
     "carrier_id": 437966784679247873,
     "airport_id": 437966785074823169
   }
-### CSV
+### TODO CSV
 POST http://localhost:8000/statistics
 Content-Type: text/csv
 flights_cancelled,flights_delayed,flights_diverted,flights_on_time,minutes_delayed_carrier,minutes_delayed_late_aircraft,minutes_delayed_national_aviation_system,minutes_delayed_security,minutes_delayed_weather,number_of_delays_carrier,number_of_delays_late_aircraft,number_of_delays_national_aviation_system,number_of_delays_security,number_of_delays_weather,time,carrier_id,airport_id

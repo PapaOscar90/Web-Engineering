@@ -1,4 +1,4 @@
-//! A module defining the `get_carrier` routes.
+//! A module defining the `get_statistic` routes.
 
 use super::views::Statistics;
 
@@ -21,7 +21,7 @@ fn get_statistics_data(conn: &diesel::PgConnection, id: i64) -> Result<Option<St
 }
 
 /// Get the JSON representation of a set of statistics in the database.
-#[get("/<statistics>", format = "application/json", rank = 1)]
+#[get("/<statistics>", format = "application/json", rank = 5)]
 pub fn get_statistics_json(
     conn: CorgisDbConn,
     statistics: i64,
@@ -30,7 +30,7 @@ pub fn get_statistics_json(
 }
 
 /// Get the CSV representation of a set of statistics in the database.
-#[get("/<statistics>", format = "text/csv", rank = 2)]
+#[get("/<statistics>", format = "text/csv", rank = 6)]
 pub fn get_statistics_csv(
     conn: CorgisDbConn,
     statistics: i64,
@@ -45,7 +45,7 @@ pub fn get_statistics_csv(
 }
 
 /// Get the HAL representation of a set of statistics in the database.
-#[get("/<statistics>", format = "application/hal+json", rank = 3)]
+#[get("/<statistics>", format = "application/hal+json", rank = 7)]
 pub fn get_statistics_hal(
     conn: CorgisDbConn,
     statistics: i64,
@@ -67,7 +67,7 @@ pub fn get_statistics_hal(
 
 /// Get the default representation of a set of statistics in the data store. This is
 /// executed if the other routes are not matched.
-#[get("/<statistics>", rank = 4)]
+#[get("/<statistics>", rank = 8)]
 pub fn get_statistics_default(
     conn: CorgisDbConn,
     statistics: i64,
