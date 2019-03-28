@@ -23,7 +23,7 @@ Clients fetch data from the server. More servers can be spun up to handle scalin
 The frontend will fetch data from the server, and manipulate it client side to render charts and graphs, as well as store smaller chunks of data in the cache for faster loading each time the user opens the site. Since some of the data rarely ever changes, and takes a relatively small amount of space, we can store the codes and name of the airlines and airports directly within the cache. Only when the user needs up-to-date statistics will they need to fetch information from the server again.
 
 ## Thick Client
-View, rendering of data in charts etc, sorting, occur (mostly) in client. Can optimize and refresh data that is out of date. Might smartly utilize caching to reduce fetching (check into this).
+View, rendering of data in charts, sorting, etc, occur (mostly) in the client. Can optimize and refresh data that is out of date. Could be extended to smartly cache to reduce fetching for graph generation.
 
 # Valuable Features
 Our front end will deliver the basic requirements, plus the ability to render statistics in graphical charts, as well as submit new reports for delays. These reports will contain information that will allow us to add the delay, but ensure that it is not entered more than once if multiple people report the same delay. As this would cause inflation that does not match the actual delay statistics.
@@ -71,8 +71,9 @@ Diesel eliminates the possibility of runtime errors, incorrect database interact
 ---
 [CockroachDB](https://www.cockroachlabs.com/product/cockroachdb/) is a fully featured database building on top of postgres. It is fast, secure, and highly scalable with automatic redistribution, load balancing, and error handling. It offers analytics, and a very user-friendly UI, displayed below:
 
-![Cockroach-Overview](Cockroach-Overview)
-![Cockroach-Details](Cockroach-Details)
+![Cockroach-Overview](Cockroach-Overview.png)
+
+![Cockroach-Details](Cockroach-Details.png)
 
 
 # Frontend Technology Selection
