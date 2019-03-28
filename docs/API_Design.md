@@ -105,7 +105,7 @@ Values included in `{}` are query parameters. For example `{airport}` is actuall
 
 All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
 
-Responses in text/csv are differing in only their apearence. Since it would be a waste of time and space to copy paste the same data over and over again, we will provide the json output, and assume the reader can read json. If examples are needed, the user can use the emacs restclient on the file: [../backend/request_examples.http](request examples.http). This file automatically creates requests to the server and outputs within a buffer of emacs. Example responses for `JSON` and `text/csv` comparison:
+Responses in text/csv are differing in only their apearence. Since it would be a waste of time and space to copy paste the same data over and over again, we will provide the json output, and assume the reader can read json. If examples are needed, the user can use the emacs restclient on the file: [../backend/request_examples.http](../backend/request_examples.http). This file automatically creates requests to the server and outputs within a buffer of emacs. Example responses for `JSON` and `text/csv` comparison:
 - an airport
 ```json
 "airport": {
