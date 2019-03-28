@@ -18,7 +18,7 @@
 # Introduction
 The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. 
 
-It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change.
+It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change. Please also refer to the Architecture document for details about the technology and high level architecture driving this amazing web app.
 
 # Dataset
 The first step in developing an API to access data, is to understand the structure of the data being accessed. The [CORGIS](https://think.cs.vt.edu/corgis/) project supplies a collection of datasets in a variety of formats. For the purposes of this project, the JSON version of the airlines dataset is considered authoritative.
@@ -78,25 +78,25 @@ By considering the structure of the data it is apparent the data does not enforc
 
 # Requirements
 The specification that was provided details the minimum requires for the API.
-- All endpoints should support representing resources and receiving data in both JSON and CSV.
-- All airports in the dataset should be retrievable.
-- All carriers should be retrievable.
-  - This should filterable by specifying a particular airport.
-- All statistics for a carrier should be retrievable.
-  - This should be filterable by specifying an airport or a month.
-- New statistics for a carrier should be able to be added.
-- Specific statistics for a carrier should be able to be modified.
-- Specific statistics for a carrier should be able to be deleted.
-- The number of on-time flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of delayed flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of cancelled flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of minutes of delay for a carrier should be retrievable.
-  - This should be filterable by specifying a reason (allowing for the filtration of carrier-specific reasons), an airport, or a month.
-- Descriptive statistics for carrier-specific delays averaged between two airports.
-  - This should be filterable by carrier.
+- [x] All endpoints should support representing resources and receiving data in both JSON and CSV.
+- [x] All airports in the dataset should be retrievable.
+- [x] All carriers should be retrievable.
+  - [x] This should filterable by specifying a particular airport.
+- [x] All statistics for a carrier should be retrievable.
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] New statistics for a carrier should be able to be added.
+- [x] Specific statistics for a carrier should be able to be modified.
+- [x] Specific statistics for a carrier should be able to be deleted.
+- [x] The number of on-time flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of delayed flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of cancelled flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of minutes of delay for a carrier should be retrievable.
+  - [x] This should be filterable by specifying a reason (allowing for the filtration of carrier-specific reasons), an airport, or a month.
+- [x] Descriptive statistics for carrier-specific delays averaged between two airports.
+  - [x] This should be filterable by carrier.
 
 # Endpoints
 The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
