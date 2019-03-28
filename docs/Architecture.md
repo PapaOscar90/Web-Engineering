@@ -94,4 +94,4 @@ Functional Reactive Programming. Messages, state, model, reactions.
 ### RemoteData
 
 # Install Instructions
-The process is simple, but please refer to our install instructions in: [install_info.md](./install_info.md) for up to date, step by step instructions.
+The process is simple, but please refer to our install instructions in: [install_info.md](../install_info.md) for up to date, step by step instructions.
