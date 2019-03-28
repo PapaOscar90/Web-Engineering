@@ -1,29 +1,76 @@
 [%bs.raw {|require('./app.css')|}];
-
 [@bs.module] external logo: string = "./logo.svg";
-
 [@bs.module] external icon: string = "./icon.jpg";
 
-let component = ReasonReact.statelessComponent("App");
+// Available routes
+type route =
+  | Home
+  | Carriers
+  | Carrier(int)
+  | Airports
+  | Airport(int)
+  | Statistics
+  | Statistic(int)
+  | NotFound;
 
-let make = (~message, _children) => {
-...component,
+// Current route
+type state = {route};
 
-  // Override the render for App
-  render: _self =>
-    // Return a div "App"
-    <div className="App">
-      // Containing an icon with text and different class (for style)
+// Possible actions
+type action =
+  | ChangeRoute(route);
 
-        <img src=icon className="App-icon" alt="icon" />
-        <p className="App-intro">
-          {ReasonReact.string("Welcome to Corgi Flight Statistics")}
-          <code> {ReasonReact.string(" Fly Smart! ")} </code>
-        </p>
-        // That contains an App-Header that contains an image and text
-        <div className="App-header">
-          <img src=logo className="App-logo" alt="logo" />
-          <h2> {ReasonReact.string(message)} </h2>
-        </div>
-      </div>,
+// Reducer based on action
+let reducer = (action, _state) =>
+  switch (action) {
+  | ChangeRoute(route) => ReasonReact.Update({route: route})
+  };
+
+// Convert from url to route
+let urlToRoute = (url: ReasonReact.Router.url) =>
+  switch (url.path) {
+  | [] => Home
+  | ["carriers"] => Carriers
+  | ["carriers", id] => Carrier(int_of_string(id))
+  | ["airports"] => Airports
+  | ["airports", id] => Airport(int_of_string(id))
+  | ["statistics"] => Statistics
+  | ["statistics", id] => Statistic(int_of_string(id))
+  | _ => NotFound
+  };
+
+// Declare the component as one which requires a reducer
+let component = ReasonReact.reducerComponent("App");
+
+// Constructor
+let make = _children => {
+  ...component,
+  reducer,
+  initialState: () => {route: Home},
+  didMount: self => {
+    let watchId =
+      ReasonReact.Router.watchUrl(url =>
+        self.send(ChangeRoute(url |> urlToRoute))
+      );
+    self.onUnmount(() => ReasonReact.Router.unwatchUrl(watchId));
+  },
+  // Map the routes to component
+  render: self => {
+    <div>
+      <div
+        /* <MaterialUi.AppBar> <MaterialUi.Toolbar /> </MaterialUi.AppBar> */
+      />
+      {switch (self.state.route) {
+       | Home => ReasonReact.string("Home")
+       | Carriers => <Carriers />
+       | Carrier(id) => ReasonReact.string("Carrier: " ++ string_of_int(id))
+       | Airports => ReasonReact.string("Airports")
+       | Airport(id) => ReasonReact.string("Airport: " ++ string_of_int(id))
+       | Statistics => ReasonReact.string("Statistics")
+       | Statistic(id) =>
+         ReasonReact.string("Statistic: " ++ string_of_int(id))
+       | NotFound => <NotFound />
+       }}
+    </div>;
+  },
 };

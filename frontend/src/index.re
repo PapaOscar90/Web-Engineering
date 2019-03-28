@@ -1,13 +1,12 @@
-[%bs.raw {|require('./index.css')|}];
+/* Bring `Utils` module into scope */
+open Utils;
 
-[@bs.module "./serviceWorker"]
-external register_service_worker : unit => unit = "register";
-[@bs.module "./serviceWorker"]
-external unregister_service_worker : unit => unit = "unregister";
+registerServiceWorker();
 
-ReactDOMRe.renderToElementWithId(
-  <App message="Welcome to React and Reason" />,
-  "root",
-);
+/* Render the main application */
+ReactDOMRe.renderToElementWithId(<App />, "root");
 
-unregister_service_worker();
+/* Start routing */
+ReasonReact.Router.push("");
+
+unregisterServiceWorker();
