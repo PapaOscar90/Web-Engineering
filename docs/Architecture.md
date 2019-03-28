@@ -57,13 +57,13 @@ This is a library that we include to manage our HATEOAS reponse body. It manages
 
 ## Serde
 ---
-[Serde](serde.rs) is a framework for serializing and deserializing Rust data structures efficiently and generically.
+[Serde](https://serde.rs) is a framework for serializing and deserializing Rust data structures efficiently and generically.
 
 The Serde ecosystem consists of data structures that know how to serialize and deserialize themselves along with data formats that know how to serialize and deserialize other things. Serde provides the layer by which these two groups interact with each other, allowing any supported data structure to be serialized and deserialized using any supported data format.
 
 ## Diesel
 ---
-[Diesel](diesel.rs) is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries.
+[Diesel](https://diesel.rs) is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries.
 
 Diesel eliminates the possibility of runtime errors, incorrect database interactions, at compile time. It is a high level query builder with a focus on performance. The extensible design is designed to be abstacted over. Which enables us to write reusable code and think in terms of the problem domain and not SQL.
 
