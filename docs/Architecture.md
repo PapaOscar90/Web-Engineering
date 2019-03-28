@@ -13,7 +13,7 @@ This document serves to define the Architecture of the Corgi Flight Statistics W
 - [x] Add json/csv output for EVERYthing in docs
 - [x] Add csv representation in code
 - [x] Add HAL for HATEOAS solution
-    - [ ] FUlly available
+    - [ ] Fully available
 
 ## Install Instructions
 The process is simple, but please refer to our install instructions in: [install_info.md](../install_info.md) for up to date, step by step instructions.
