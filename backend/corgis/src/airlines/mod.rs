@@ -102,17 +102,17 @@ pub struct Carrier {
 pub struct Statistics {
     /// Get a reference to the `flights` of a `Statistics`.
     #[get = "pub"]
-    flights: Flights,
+    pub flights: Flights,
 
     /// Get a reference to the `minutes_delayed` of a `Statistics`.
     #[get = "pub"]
     #[serde(rename = "minutes delayed")]
-    minutes_delayed: MinutesDelayed,
+    pub minutes_delayed: MinutesDelayed,
 
     /// Get a reference to the `number_of_delays` of a `Statistics`.
     #[get = "pub"]
     #[serde(rename = "# of delays")]
-    number_of_delays: NumberOfDelays,
+    pub number_of_delays: NumberOfDelays,
 }
 
 /// The statistics providing details on the totals of the number of flights
@@ -121,24 +121,24 @@ pub struct Statistics {
 pub struct Flights {
     /// Get a reference to the number of `canceled` `Flights`.
     #[get = "pub"]
-    cancelled: i32,
+    pub cancelled: i32,
 
     /// Get a reference to the number of `delayed` `Flights`.
     #[get = "pub"]
-    delayed: i32,
+    pub delayed: i32,
 
     /// Get a reference to the number of `diverted` `Flights`.
     #[get = "pub"]
-    diverted: i32,
+    pub diverted: i32,
 
     /// Get a reference to the number of `on_time` `Flights`.
     #[get = "pub"]
     #[serde(rename = "on time")]
-    on_time: i32,
+    pub on_time: i32,
 
     /// Get a reference to the `total` number of `Flights`.
     #[get = "pub"]
-    total: i32,
+    pub total: i32,
 }
 
 /// The statistics of the minutes delayed due to a particular reason.
@@ -162,29 +162,29 @@ pub struct Flights {
 pub struct MinutesDelayed {
     /// Get a reference to the number of `MinutesDelayed` due to the `carrier`.
     #[get = "pub"]
-    carrier: i32,
+    pub carrier: i32,
 
     /// Get a reference to the number of `MinutesDelayed` due to `late_aircraft`.
     #[get = "pub"]
     #[serde(rename = "late aircraft")]
-    late_aircraft: i32,
+    pub late_aircraft: i32,
 
     /// Get a reference to the number of `MinutesDelayed` due to the `national_aviation_system`.
     #[get = "pub"]
     #[serde(rename = "national aviation system")]
-    national_aviation_system: i32,
+    pub national_aviation_system: i32,
 
     /// Get a reference to the number of `MinutesDelayed` due to `security`.
     #[get = "pub"]
-    security: i32,
+    pub security: i32,
 
     /// Get a reference to the `total` number of `MinutesDelayed`.
     #[get = "pub"]
-    total: i32,
+    pub total: i32,
 
     /// Get a reference to the number of `MinutesDelayed` due to `weather`.
     #[get = "pub"]
-    weather: i32,
+    pub weather: i32,
 }
 
 impl std::iter::Sum for MinutesDelayed {
@@ -207,25 +207,25 @@ impl std::iter::Sum for MinutesDelayed {
 pub struct NumberOfDelays {
     /// Get a reference to the `NumberOfDelays` due to the `carrier`.
     #[get = "pub"]
-    carrier: i32,
+    pub carrier: i32,
 
     /// Get a reference to the `NumberOfDelays` due to `late_aircraft`.
     #[get = "pub"]
     #[serde(rename = "late aircraft")]
-    late_aircraft: i32,
+    pub late_aircraft: i32,
 
     /// Get a reference to the `NumberOfDelays` due to the `national_aviation_system`.
     #[get = "pub"]
     #[serde(rename = "national aviation system")]
-    national_aviation_system: i32,
+    pub national_aviation_system: i32,
 
     /// Get a reference to the `NumberOfDelays` due to `security`.
     #[get = "pub"]
-    security: i32,
+    pub security: i32,
 
     /// Get a reference to the `NumberOfDelays` due to the `weather`.
     #[get = "pub"]
-    weather: i32,
+    pub weather: i32,
 }
 
 /// A time unit as provided in the Airlines dataset.
