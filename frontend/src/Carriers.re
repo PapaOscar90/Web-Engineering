@@ -14,7 +14,9 @@ let component = ReasonReact.reducerComponent("Carriers");
 
 let make = _children => {
   let loadCarriers = ({ReasonReact.state, send}) => {
+    Js.log("Fetching carriers");
     Models.fetchCarriers(payload => send(Loaded(payload))) |> ignore;
+    Js.log("Carriers loaded");
     send(Loading);
   };
   {

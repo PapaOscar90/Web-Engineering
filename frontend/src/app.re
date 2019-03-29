@@ -6,11 +6,9 @@
 type route =
   | Home
   | Carriers
-  | Carrier(int)
   | Airports
-  | Airport(int)
   | Statistics
-  | Statistic(int)
+  | Graphs
   | NotFound;
 
 // Current route
@@ -31,11 +29,9 @@ let urlToRoute = (url: ReasonReact.Router.url) =>
   switch (url.path) {
   | [] => Home
   | ["carriers"] => Carriers
-  | ["carriers", id] => Carrier(int_of_string(id))
   | ["airports"] => Airports
-  | ["airports", id] => Airport(int_of_string(id))
   | ["statistics"] => Statistics
-  | ["statistics", id] => Statistic(int_of_string(id))
+  | ["graphs"] => Graphs
   | _ => NotFound
   };
 
@@ -57,18 +53,30 @@ let make = _children => {
   // Map the routes to component
   render: self => {
     <div>
-      <div
-        /* <MaterialUi.AppBar> <MaterialUi.Toolbar /> </MaterialUi.AppBar> */
-      />
+      <div>
+        <MaterialUi.AppBar>
+          <MaterialUi.Toolbar>
+            <MaterialUi.Button href="http://localhost:3000/carriers">
+              "Carriers"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/airports">
+              "Airports"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/statistics">
+              "Statistics"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/graphs">
+              "Graphs"
+            </MaterialUi.Button>
+          </MaterialUi.Toolbar>
+        </MaterialUi.AppBar>
+      </div>
       {switch (self.state.route) {
        | Home => ReasonReact.string("Home")
        | Carriers => <Carriers />
-       | Carrier(id) => ReasonReact.string("Carrier: " ++ string_of_int(id))
-       | Airports => ReasonReact.string("Airports")
-       | Airport(id) => ReasonReact.string("Airport: " ++ string_of_int(id))
-       | Statistics => ReasonReact.string("Statistics")
-       | Statistic(id) =>
-         ReasonReact.string("Statistic: " ++ string_of_int(id))
+       | Airports => <Airports />
+       | Statistics => <Statistics />
+       | Graphs => <Graphs />
        | NotFound => <NotFound />
        }}
     </div>;
