@@ -100,3 +100,4 @@ Generates a nice UI for us.
 ---
 Recharts is a library that allows us to display statistical data in a clean, beautiful way. It is fully featured, and can plug and play.
 
+[Recharts.org](http://recharts.org/en-US/)
