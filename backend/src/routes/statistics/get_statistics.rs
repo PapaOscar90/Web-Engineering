@@ -128,7 +128,7 @@ fn get_statistics_data(
     Ok(statistics.into_par_iter().map(Statistics::from).collect())
 }
 
-/// Get the JSON representation of the carriers in the database.
+/// Get the JSON representation of the statistics in the database.
 #[get(
     "/?<carrier>&<airport>&<month>&<limit>&<offset>",
     format = "application/json",

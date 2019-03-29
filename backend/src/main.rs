@@ -12,6 +12,7 @@ extern crate rocket_contrib;
 
 mod database;
 mod routes;
+mod util;
 
 /// A struct with a database fairing allowing the database to be attached to the rocket.
 #[database("corgis_airlines")]
@@ -20,8 +21,11 @@ pub struct CorgisDbConn(diesel::pg::PgConnection);
 /// Prepare the rocket web-server for launch:
 ///    1. Mount each end-point to the root.
 ///    2. Attach the database.
+///    3. Attach the CORS fairing.
 pub fn rocket() -> rocket::Rocket {
-    routes::mount(rocket::ignite()).attach(CorgisDbConn::fairing())
+    routes::mount(rocket::ignite())
+        .attach(CorgisDbConn::fairing())
+        .attach(util::cors())
 }
 
 /// Rocket launch in T-10...
