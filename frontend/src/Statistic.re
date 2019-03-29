@@ -8,10 +8,10 @@ let make = (~statistic: Models.statistic, ~index: int, _children) => {
     <div className="StatisticItem">
       {ReasonReact.string(
          string_of_int(statistic.id)
-         ++ " "
-         ++ string_of_int(statistic.flights_delayed)
-         ++ " "
-         ++ string_of_int(statistic.minutes_delayed),
+         ++ " flights delayed total:"
+         ++ string_of_int(statistic.flightsDelayed)
+         ++ " minutes delayed total:"
+         ++ string_of_int(statistic.minutesDelayedTotal),
        )}
     </div>,
 };
