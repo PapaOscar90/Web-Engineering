@@ -1,30 +1,84 @@
 [%bs.raw {|require('./app.css')|}];
+[@bs.module] external logo: string = "./logo.svg";
+[@bs.module] external icon: string = "./icon.jpg";
 
-[@bs.module] external logo : string = "./logo.svg";
+// Available routes
+type route =
+  | Home
+  | Carriers
+  | Airports
+  | Statistics
+  | Graphs
+  | NotFound;
 
-[@bs.module] external icon : string = "./icon.jpg";
+// Current route
+type state = {route};
 
-let component = ReasonReact.statelessComponent("App");
+// Possible actions
+type action =
+  | ChangeRoute(route);
 
-let make = (~message, _children) => {
+// Reducer based on action
+let reducer = (action, _state) =>
+  switch (action) {
+  | ChangeRoute(route) => ReasonReact.Update({route: route})
+  };
+
+// Convert from url to route
+let urlToRoute = (url: ReasonReact.Router.url) =>
+  switch (url.path) {
+  | [] => Home
+  | ["carriers"] => Carriers
+  | ["airports"] => Airports
+  | ["statistics"] => Statistics
+  | ["graphs"] => Graphs
+  | _ => NotFound
+  };
+
+// Declare the component as one which requires a reducer
+let component = ReasonReact.reducerComponent("App");
+
+// Constructor
+let make = _children => {
   ...component,
-  
-  // Override the render for App
-  render: _self =>
-
-    // Return a div "App"
-    <div className="App">
-      // Containing an icon with text and different class (for style)
-      <img src=icon className="App-icon" alt="icon" />
-      <p className="App-intro">
-        (ReasonReact.string("Welcome to Corgi Flight Statistics"))
-        <code> (ReasonReact.string(" Fly Smart! ")) </code>
-      </p>
-
-      // That contains an App-Header that contains an image and text
-      <div className="App-header">
-        <img src=logo className="App-logo" alt="logo" />
-        <h2> (ReasonReact.string(message)) </h2>
+  reducer,
+  initialState: () => {route: Home},
+  didMount: self => {
+    let watchId =
+      ReasonReact.Router.watchUrl(url =>
+        self.send(ChangeRoute(url |> urlToRoute))
+      );
+    self.onUnmount(() => ReasonReact.Router.unwatchUrl(watchId));
+  },
+  // Map the routes to component
+  render: self => {
+    <div>
+      <div>
+        <MaterialUi.AppBar>
+          <MaterialUi.Toolbar>
+            <MaterialUi.Button href="http://localhost:3000/carriers">
+              "Carriers"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/airports">
+              "Airports"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/statistics">
+              "Statistics"
+            </MaterialUi.Button>
+            <MaterialUi.Button href="http://localhost:3000/graphs">
+              "Graphs"
+            </MaterialUi.Button>
+          </MaterialUi.Toolbar>
+        </MaterialUi.AppBar>
       </div>
-    </div>,
+      {switch (self.state.route) {
+       | Home => ReasonReact.string("Home")
+       | Carriers => <Carriers />
+       | Airports => <Airports />
+       | Statistics => <Statistics />
+       | Graphs => <Graphs />
+       | NotFound => <NotFound />
+       }}
+    </div>;
+  },
 };

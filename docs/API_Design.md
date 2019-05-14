@@ -15,13 +15,12 @@
 
 <!-- markdown-toc end -->
 
-
-## Introduction
+# Introduction
 The aim of this document is to detail the design of a RESTful Web API allowing access to the data of the [CORGIS Airlines Dataset](https://think.cs.vt.edu/corgis/json/airlines/airlines.html). The requirements of the API are detailed in the [specification](specification.pdf) that was provided as part of the Web Engineering course material. 
 
-It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change.
+It is important to note that this document will continue to evolve in the future. As the specification changes with added or modified requirements, this document will also change. Please also refer to the Architecture document for details about the technology and high level architecture driving this amazing web app.
 
-## Dataset
+# Dataset
 The first step in developing an API to access data, is to understand the structure of the data being accessed. The [CORGIS](https://think.cs.vt.edu/corgis/) project supplies a collection of datasets in a variety of formats. For the purposes of this project, the JSON version of the airlines dataset is considered authoritative.
 
 The dataset consists of an array of objects, each of which represent one record of data. Each record specifies:
@@ -77,36 +76,36 @@ For this intersection the record also specifies additional statistics.
 
 By considering the structure of the data it is apparent the data does not enforce a hierarchical relationship between `airport`s, `carrier`s, `time`s, or `statistics`. This is critical to consider as it influences the choice of using query parameters or path segments to specify data. According to [rfc3986](https://tools.ietf.org/html/rfc3986#section-3.4), query parameters may only be used to represent non-hierarchical data.
 
-## Requirements
+# Requirements
 The specification that was provided details the minimum requires for the API.
-- All endpoints should support representing resources and receiving data in both JSON and CSV.
-- All airports in the dataset should be retrievable.
-- All carriers should be retrievable.
-  - This should filterable by specifying a particular airport.
-- All statistics for a carrier should be retrievable.
-  - This should be filterable by specifying an airport or a month.
-- New statistics for a carrier should be able to be added.
-- Specific statistics for a carrier should be able to be modified.
-- Specific statistics for a carrier should be able to be deleted.
-- The number of on-time flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of delayed flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of cancelled flights for a carrier should be retrievable
-  - This should be filterable by specifying an airport or a month.
-- The number of minutes of delay for a carrier should be retrievable.
-  - This should be filterable by specifying a reason (allowing for the filtration of carrier-specific reasons), an airport, or a month.
-- Descriptive statistics for carrier-specific delays averaged between two airports.
-  - This should be filterable by carrier.
+- [x] All endpoints should support representing resources and receiving data in both JSON and CSV.
+- [x] All airports in the dataset should be retrievable.
+- [x] All carriers should be retrievable.
+  - [x] This should filterable by specifying a particular airport.
+- [x] All statistics for a carrier should be retrievable.
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] New statistics for a carrier should be able to be added.
+- [x] Specific statistics for a carrier should be able to be modified.
+- [x] Specific statistics for a carrier should be able to be deleted.
+- [x] The number of on-time flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of delayed flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of cancelled flights for a carrier should be retrievable
+  - [x] This should be filterable by specifying an airport or a month.
+- [x] The number of minutes of delay for a carrier should be retrievable.
+  - [x] This should be filterable by specifying a reason (allowing for the filtration of carrier-specific reasons), an airport, or a month.
+- [x] Descriptive statistics for carrier-specific delays averaged between two airports.
+  - [x] This should be filterable by carrier.
 
-## Endpoints
+# Endpoints
 The requirement of supporting communication in JSON and CSV will be met by using the `Content-Type` header. A user of the API will specify that their request is in `application/json` or `text/csv`, and the API will respond accordingly. If the `Content-Type` is not specified, JSON is considered the default. As this requirement does not directly influence the underlying endpoint design, each endpoint should be considered to implicitly support both JSON and CSV.
 
-Values included in `{}` are query parameters. For example `{airport}` is actually entered as `airport=<airport-code>` where '<airport-code>' is the three letter identifier of the airport.
+Values included in `{}` are query parameters. For example `{airport}` is actually entered as `airport=<airport-code>` where '\<airport-code\>' is the three letter identifier of the airport.
 
 All endpoints should be assumed to respond with status code 200 on success unless specified otherwise.
 
-Responses in text/csv are differing in only their apearence. Since it would be a waste of time and space to copy paste the same data over and over again, we will provide the json output, and assume the reader can read json. If examples are needed, the user can use the emacs restclient on the file: [../backend/request_examples.http](request examples.http). This file automatically creates requests to the server and outputs within a buffer of emacs. Example responses for `JSON` and `text/csv` comparison:
+Responses in text/csv are differing in only their apearence. Since it would be a waste of time and space to copy paste the same data over and over again, we will provide the json output, and assume the reader can read json. If examples are needed, the user can use the emacs restclient on the file: [../backend/request_examples.http](../backend/request_examples.http). This file automatically creates `CURL` requests to the server and outputs within a buffer of emacs. Example responses for `JSON` and `text/csv` for comparison:
 - an airport
 ```json
 "airport": {
@@ -150,6 +149,7 @@ This route supports retrieving all airports in the dataset.
 Return all airports within the dataset.
 ###### Sample result (JSON)
 *NOTE* some results have been elided by `...`.
+
 ```json
 {
     _links: {
@@ -524,7 +524,7 @@ Allows for retrieval of the descriptive statistics filtered by a carrier.
 ##### GET
 Return the descriptive statistics between the two provided airports specific to a carrier.
 
-## Summary
+# Summary
 The following table summarizes the routes that are to be created. Mandatory query parameters are in **bold**.
 
 | Endpoint                                                                               | HTTP Verbs |
@@ -543,7 +543,7 @@ The following table summarizes the routes that are to be created. Mandatory quer
 | <code>/statistics/connection?<b>{airport_1_code}&{airport_2_code}</b>&{carrier}</code> | GET        |
 
 # Appendix
-## JSON Example Data
+### JSON Example Data
 ```json
 [
     {

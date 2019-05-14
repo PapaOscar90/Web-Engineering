@@ -7,6 +7,10 @@ Accept: text/html
 GET http://localhost:8000/airports
 Accept: application/json
 
+### GET with application/hal+json sepcified routes to the HAL routes.
+GET http://localhost:8000/airports
+Accept: application/hal+json
+
 ## GET with text/csv specified routes to the CSV route.
 GET http://localhost:8000/airports
 Accept: text/csv
@@ -19,6 +23,9 @@ Accept: text/html
 ### JSON
 GET http://localhost:8000/airports
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/airports
+Accept: application/hal+json
 ### CSV
 GET http://localhost:8000/airports
 Accept: text/csv
@@ -26,24 +33,30 @@ Accept: text/csv
 # Airport
 ## GET airport which exists
 ### Default
-GET http://localhost:8000/airports/ATL
+GET http://localhost:8000/airports/438123234872131585
 Accept: text/html
 ### JSON
-GET http://localhost:8000/airports/ATL
+GET http://localhost:8000/airports/438123234872131585
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/airports/438123234872131585
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/airports/ATL
+GET http://localhost:8000/airports/438123234872131585
 Accept: text/csv
 
 ## Get airport which doesn't exist
 ### Default
-GET http://localhost:8000/airports/NONEXISTANT
+GET http://localhost:8000/airports/-1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/airports/NONEXISTANT
+GET http://localhost:8000/airports/-1
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/airports/-1
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/airports/NONEXISTANT
+GET http://localhost:8000/airports/-1
 Accept: text/csv
 
 # Carriers
@@ -54,6 +67,9 @@ Accept: text/html
 ### JSON
 GET http://localhost:8000/carriers
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/carriers
+Accept: application/hal+json
 ### CSV
 GET http://localhost:8000/carriers
 Accept: text/csv
@@ -61,58 +77,73 @@ Accept: text/csv
 # Carrier
 ## Get carrier which exists
 ### Default
-GET http://localhost:8000/carriers/AA
+GET http://localhost:8000/carriers/438123234512240641
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers/AA
+GET http://localhost:8000/carriers/438123234512240641
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/carriers/438123234512240641
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers/AA
+GET http://localhost:8000/carriers/438123234512240641
 Accept: text/csv
 
 ## Get carrier which doesn't exist
 ### JSON
-GET http://localhost:8000/carriers/NONEXISTANT
+GET http://localhost:8000/carriers/-1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers/NONEXISTANT
+GET http://localhost:8000/carriers/-1
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/carriers/-1
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers/NONEXISTANT
+GET http://localhost:8000/carriers/-1
 Accept: text/csv
 
 ## GET carriers at an airport which doesn't exist
 ### Default
-GET http://localhost:8000/carriers?airport=NONEXISTANT
+GET http://localhost:8000/carriers?airport=-1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers?airport=NONEXISTANT
+GET http://localhost:8000/carriers?airport=-1
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/carriers?airport=-1
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers?airport=NONEXISTANT
+GET http://localhost:8000/carriers?airport=-1
 Accept: text/csv
 
 ## GET carriers at a specific airport
 ### Default
-GET http://localhost:8000/carriers?airport=PHL
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: text/html
 ### JSON
-GET http://localhost:8000/carriers?airport=PHL
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/carriers?airport=438123234872131585
+Accept: application/hal+json
 ### CSV
-GET http://localhost:8000/carriers?airport=PHL
+GET http://localhost:8000/carriers?airport=438123234872131585
 Accept: text/csv
 
 # Statistics
-## GET statistics (WARNING LARGE RESULT)
+## GET statistics
 ### Default
-GET http://localhost:8000/statistics
+GET http://localhost:8000/statistics?limit=10
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics
+GET http://localhost:8000/statistics?limit=10
 Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/statistics?limit=10
+Accept: application/hal+json
 ## CSV
-GET http://localhost:8000/statistics
+GET http://localhost:8000/statistics?limit=10
 Accept: text/csv
 
 ## TODO POST statistics
@@ -120,153 +151,201 @@ Accept: text/csv
 POST http://localhost:8000/statistics
 Content-Type: text/html
   {
-    "airport": {
-      "code": "ATL",
-      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
-    },
-    "carrier": {
-      "code": "AA",
-      "name": "American Airlines Inc."
-    },
-    "statistics": {
-      "flights": {
-        "cancelled": 13,
-        "delayed": 242,
-        "diverted": 0,
-        "on time": 449,
-        "total": 704
-      },
-      "minutes delayed": {
-        "carrier": 2327,
-        "late aircraft": 4725,
-        "national aviation system": 5961,
-        "security": 0,
-        "total": 14470,
-        "weather": 1457
-      },
-      "# of delays": {
-        "carrier": 41,
-        "late aircraft": 62,
-        "national aviation system": 116,
-        "security": 0,
-        "weather": 24
-      }
-    },
-    "time": {
-      "label": "2018/1",
-      "month": 1,
-      "year": 2018
-    }
+    "flights_cancelled": 1,
+    "flights_delayed": 106,
+    "flights_diverted": 0,
+    "flights_on_time": 906,
+    "minutes_delayed_carrier": 817,
+    "minutes_delayed_late_aircraft": 2588,
+    "minutes_delayed_national_aviation_system": 323,
+    "minutes_delayed_security": 55,
+    "minutes_delayed_weather": 0,
+    "number_of_delays_carrier": 21,
+    "number_of_delays_late_aircraft": 70,
+    "number_of_delays_national_aviation_system": 13,
+    "number_of_delays_security": 3,
+    "number_of_delays_weather": 0,
+    "time": "2019-12-01",
+    "carrier_id": 438123234627452929,
+    "airport_id": 438123235093938177
   }
 
 ### JSON
 POST http://localhost:8000/statistics
 Content-Type: application/json
   {
-    "airport": {
-      "code": "ATL",
-      "name": "Atlanta, GA: Hartsfield-Jackson Atlanta International"
-    },
-    "carrier": {
-      "code": "AA",
-      "name": "American Airlines Inc."
-    },
-    "statistics": {
-      "flights": {
-        "cancelled": 13,
-        "delayed": 242,
-        "diverted": 0,
-        "on time": 449,
-        "total": 704
-      },
-      "minutes delayed": {
-        "carrier": 2327,
-        "late aircraft": 4725,
-        "national aviation system": 5961,
-        "security": 0,
-        "total": 14470,
-        "weather": 1457
-      },
-      "# of delays": {
-        "carrier": 41,
-        "late aircraft": 62,
-        "national aviation system": 116,
-        "security": 0,
-        "weather": 24
-      }
-    },
-    "time": {
-      "label": "2018/1",
-      "month": 1,
-      "year": 2018
-    }
+    "flights_cancelled": 1,
+    "flights_delayed": 106,
+    "flights_diverted": 0,
+    "flights_on_time": 906,
+    "minutes_delayed_carrier": 817,
+    "minutes_delayed_late_aircraft": 2588,
+    "minutes_delayed_national_aviation_system": 323,
+    "minutes_delayed_security": 55,
+    "minutes_delayed_weather": 0,
+    "number_of_delays_carrier": 21,
+    "number_of_delays_late_aircraft": 70,
+    "number_of_delays_national_aviation_system": 13,
+    "number_of_delays_security": 3,
+    "number_of_delays_weather": 0,
+    "time": "2003-06-01",
+    "carrier_id": 437966784679247873,
+    "airport_id": 437966785074823169
   }
-
+### HAL+JSON
+POST http://localhost:8000/statistics
+Content-Type: application/hal+json
+  {
+    "flights_cancelled": 1,
+    "flights_delayed": 106,
+    "flights_diverted": 0,
+    "flights_on_time": 906,
+    "minutes_delayed_carrier": 817,
+    "minutes_delayed_late_aircraft": 2588,
+    "minutes_delayed_national_aviation_system": 323,
+    "minutes_delayed_security": 55,
+    "minutes_delayed_weather": 0,
+    "number_of_delays_carrier": 21,
+    "number_of_delays_late_aircraft": 70,
+    "number_of_delays_national_aviation_system": 13,
+    "number_of_delays_security": 3,
+    "number_of_delays_weather": 0,
+    "time": "2003-06-01",
+    "carrier_id": 437966784679247873,
+    "airport_id": 437966785074823169
+  }
+### TODO CSV
+POST http://localhost:8000/statistics
+Content-Type: text/csv
+flights_cancelled,flights_delayed,flights_diverted,flights_on_time,minutes_delayed_carrier,minutes_delayed_late_aircraft,minutes_delayed_national_aviation_system,minutes_delayed_security,minutes_delayed_weather,number_of_delays_carrier,number_of_delays_late_aircraft,number_of_delays_national_aviation_system,number_of_delays_security,number_of_delays_weather,time,carrier_id,airport_id
+7,225,0,1034,4201,3043,3067,45,1783,69,46,84,2,24,2003-06-01,437966784827719681,437966785103462401
 
 # Statistics with filtration
 ## GET statistics filtered by airport
 ### Default
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?airport=ATL
+GET http://localhost:8000/statistics?airport=438123234994716673
 Accept: text/csv
 
 ## GET statistics filtered by carrier
 ### Default
-GET http://localhost:8000/statistics?carrier=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?airport=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?airport=AA
+GET http://localhost:8000/statistics?carrier=438123234627452929
 Accept: text/csv
 
 ## GET statistics filtered by month
 ### Default
-GET http://localhost:8000/statistics?month=1
+GET http://localhost:8000/statistics?month=6&offset=330
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?month=1
+GET http://localhost:8000/statistics?month=6&offset=330
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?month=1
+GET http://localhost:8000/statistics?month=6&offset=330
 Accept: text/csv
 
 ## GET statistics filtered by carrier and month.
 ### Default
-GET http://localhost:8000/statistics?carrier=AA&month=1
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?carrier=AA&month=1
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?carrier=AA&month=1
+GET http://localhost:8000/statistics?carrier=438123234627452929&month=6
 Accept: text/csv
 
 ## GET statistics filter by airport, carrier, and month
 ### Default
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics?airport=ATL&carrier=AA&month=1
+GET http://localhost:8000/statistics?airport=438123234994716673&carrier=438123234627452929&month=6
+Accept: text/csv
+
+# Statistic
+## Get statistics which exists
+### Default
+GET http://localhost:8000/statistics/437966785304952833
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/437966785304952833
+Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/statistics/437966785304952833
+Accept: application/hal+json
+### CSV
+GET http://localhost:8000/statistics/437966785304952833
+Accept: text/csv
+
+## Get carrier which doesn't exist
+### JSON
+GET http://localhost:8000/statistics/-1
+Accept: text/html
+### JSON
+GET http://localhost:8000/statistics/-1
+Accept: application/json
+### HAL+JSON
+GET http://localhost:8000/statistics/-1
+Accept: application/hal+json
+### CSV
+GET http://localhost:8000/statistics/-1
 Accept: text/csv
 
 ## TODO PUT statistics
 ### Default
+PUT http://localhost:8000/statistics/437966785304952833
+Content-Type: text/html
 ### JSON
+PUT http://localhost:8000/statistics/437966785304952833
+Content-Type: application/json
+### HAL+JSON
+PUT http://localhost:8000/statistics/437966785304952833
+Content-Type: application/hal+json
 ### CSV
+PUT http://localhost:8000/statistics/437966785304952833
+Content-Type: text/csv
+
+## TODO PATCH statistics
+### Default
+PATCH http://localhost:8000/statistics/437966785304952833
+Content-Type: text/html
+### JSON
+PATCH http://localhost:8000/statistics/437966785304952833
+Content-Type: application/json
+### HAL+JSON
+PATCH http://localhost:8000/statistics/437966785304952833
+Content-Type: application/hal+json
+### CSV
+PATCH http://localhost:8000/statistics/437966785304952833
+Content-Type: text/csv
+
 ## TODO DELETE statistics
 ### Default
+DELETE http://localhost:8000/statistics/437966785304952833
+Content-Type: text/html
 ### JSON
+DELETE http://localhost:8000/statistics/437966785304952833
+Content-Type: application/json
+### HAL+JSON
+DELETE http://localhost:8000/statistics/437966785304952833
+Content-Type: application/hal+json
 ### CSV
+DELETE http://localhost:8000/statistics/437966785304952833
+Content-Type: text/csv
 
 # Flight statistics (number of on-time, delayed, cancelled, diverted flights as well as the total flights)
 ## GET flight statistics
@@ -283,13 +362,13 @@ Accept: text/csv
 # Flights statistics with filtration
 ## GET flights statistics filtered by carrier
 ### Default
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/flights?carrier=AA
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929
 Accept: text/csv
 
 ## GET flights statistics filtered by month
@@ -305,13 +384,13 @@ Accept: text/csv
 
 ## GET flight statistics filtered by carrier and month
 ### Default
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/flights?carrier=AA&month=1
+GET http://localhost:8000/statistics/flights?carrier=438123234627452929&month=1
 Accept: text/csv
 
 # Minutes delayed statistics
@@ -329,34 +408,34 @@ Accept: text/csv
 # Minutes delayed statistics filtration
 ## GET minutes delayed statistics filtered by carrier, airport, and month
 ### Default
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1
 Accept: text/csv
 
 ## GET minutes delayed statistics filtered by carrier, airport, month, and reason
 ### Default
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/minutes-delayed?carrier=AA&airport=ATL&month=1&reason=carrier_specific
+GET http://localhost:8000/statistics/minutes-delayed?carrier=438123234627452929&airport=438123234994716673&month=1&reason=carrier_specific
 Accept: text/csv
 
 # Connection statistics between 2 airports
 ## GET connection statistics between 2 airports
 ### Default
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: text/html
 ### JSON
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: application/json
 ### CSV
-GET http://localhost:8000/statistics/connection?airport1=ATL&airport2=PHL
+GET http://localhost:8000/statistics/connection?airport1=438123234994716673&airport2=438123234953396225
 Accept: text/csv

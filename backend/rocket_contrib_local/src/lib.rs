@@ -5,3 +5,4 @@
 //! [rocket_contrib](https://api.rocket.rs/rocket_contrib/).
 
 pub mod csv;
+pub mod hal;

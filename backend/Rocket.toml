@@ -1,0 +1,2 @@
+[global.databases]
+corgis_airlines = { url = "postgresql://root@localhost:26257/defaultdb?sslmode=disable" }
